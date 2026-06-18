@@ -1,0 +1,38 @@
+<!doctype html><html><head><meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Top-of-funnel daily alerts — 2026-06-16 (IST · D-2)</title><style>:root{--bg:#0f1419;--panel:#1a1f26;--border:#2d343d;--text:#e6e9ef;--muted:#9aa3ad;
+--good:#4ade80;--warn:#fbbf24;--bad:#f87171;--blue:#60a5fa}
+*{box-sizing:border-box}
+body{margin:0;padding:32px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Inter,sans-serif;
+background:var(--bg);color:var(--text);line-height:1.55}
+.wrap{max-width:1000px;margin:0 auto}
+h1{font-size:24px;margin:0 0 6px;font-weight:600}
+h2{font-size:15px;margin:26px 0 4px;color:#bfdbfe}
+.note{color:var(--muted);font-size:12px;margin:6px 0}
+table{width:100%;border-collapse:collapse;font-size:12.5px;background:var(--panel);
+border:1px solid var(--border);border-radius:8px;overflow:hidden;margin:6px 0 4px}
+th,td{padding:7px 12px;border-bottom:1px solid var(--border);text-align:left;white-space:pre}
+th{background:#202733;color:var(--muted);font-weight:600;font-size:10.5px;text-transform:uppercase;letter-spacing:.04em}
+tbody tr:last-child td{border-bottom:none}
+td:not(:first-child),th:not(:first-child){text-align:right}
+tr.total td{font-weight:700;background:rgba(96,165,250,.08)}
+pre{background:#0a0c12;border:1px solid var(--border);border-radius:6px;padding:10px 14px;font-size:11.5px;overflow-x:auto}
+footer{color:var(--muted);font-size:11px;margin-top:28px;padding-top:12px;border-top:1px solid var(--border)}</style></head><body><div class="wrap">
+<h1>Top-of-funnel daily alerts — 2026-06-16 (IST · D-2)</h1>
+<p class='note'>48h-lagged day · baseline = trailing 7d (2026-06-09 … 2026-06-15) · GA4 + Search Console + ClickHouse.</p>
+<h2>Summary</h2>
+<table><thead><tr><th>Result</th><th>Count</th></tr></thead><tbody><tr><td>🔴 Firing</td><td>3</td></tr><tr><td>🟢 OK</td><td>11</td></tr><tr><td>🟡 Pending</td><td>0</td></tr><tr><td>⚪ Info</td><td>3</td></tr><tr class='total'><td>Total</td><td>17</td></tr></tbody></table>
+<h2>P1 — Page (on-call) (4)</h2>
+<table><thead><tr><th>#</th><th>Alert</th><th>Status</th><th>Current (D-2)</th><th>Baseline · Δ</th></tr></thead><tbody><tr><td>#1</td><td>Total daily sessions</td><td>OK</td><td>54,566 sessions</td><td>54,366 (7d med) · 100%</td></tr><tr><td>#2</td><td>Paid-channel sessions</td><td>OK</td><td>4,845 named-paid sessions</td><td>2,663 (7d med) · 182% · +…</td></tr><tr><td>#3</td><td>Signup rate (visit → user_acc…</td><td>OK</td><td>32.63% (15,753 signups / …</td><td>21.91% (7d med) · 149%</td></tr><tr><td>#4</td><td>T1 country sessions</td><td>OK</td><td>9,478 T1 sessions</td><td>9,391 (7d med) · 101%</td></tr></tbody></table>
+<h2>P2 — Slack daily (7 · 2 firing)</h2>
+<table><thead><tr><th>#</th><th>Alert</th><th>Status</th><th>Current (D-2)</th><th>Baseline · Δ</th></tr></thead><tbody><tr><td>#5</td><td>Organic Search sessions</td><td>OK</td><td>10,949 sessions</td><td>10,263 (7d med) · 107%</td></tr><tr><td>#6</td><td>Direct sessions</td><td>OK</td><td>5,218 sessions</td><td>4,960 (7d med) · 105%</td></tr><tr><td>#7</td><td>Referral sessions (top 10 ref…</td><td>OK</td><td>top referrer: accounts.go…</td><td>10 referrers tracked</td></tr><tr><td>#8</td><td>Channel mix shift</td><td>FIRING</td><td>biggest: Cross-network</td><td>threshold ±10pp vs 7d med…</td></tr><tr><td>#9</td><td>Bounce rate</td><td>OK</td><td>46.7% bounce</td><td>55.4% (7d med) · 84%</td></tr><tr><td>#10</td><td>Mobile-vs-desktop split</td><td>FIRING</td><td>mobile 51.5%</td><td>68.0% (7d med) · Δ -16.5pp</td></tr><tr><td>#11</td><td>New users %</td><td>OK</td><td>new users 82.7%</td><td>83.8% (7d med) · Δ -1.1pp</td></tr></tbody></table>
+<h2>P3 — Daily digest (4 · 1 firing)</h2>
+<table><thead><tr><th>#</th><th>Alert</th><th>Status</th><th>Current (D-2)</th><th>Baseline · Δ</th></tr></thead><tbody><tr><td>#12</td><td>UTM campaign zero-impressions</td><td>OK</td><td>105 active campaigns</td><td>flag: active campaign → 0…</td></tr><tr><td>#13</td><td>Cost-per-signup (paid only)</td><td>OK</td><td>$4.44 cost/conv ($8,357 /…</td><td>Ads conversions proxy; 14…</td></tr><tr><td>#14</td><td>Landing-page conversion (per …</td><td>INFO</td><td>top LP: /ai-presentation-…</td><td>GA4 proxy: GA_user_signup…</td></tr><tr><td>#15</td><td>Search Console — clicks + pos…</td><td>FIRING</td><td>top: &#x27;presentation ai&#x27; 1,…</td><td>20 top queries tracked</td></tr></tbody></table>
+<h2>P4 — Weekly / context (2)</h2>
+<table><thead><tr><th>#</th><th>Alert</th><th>Status</th><th>Current (D-2)</th><th>Baseline · Δ</th></tr></thead><tbody><tr><td>#16</td><td>Weekly channel performance su…</td><td>INFO</td><td>WoW per channel (last 7d …</td><td>Cross-network 229,802 (-1…</td></tr><tr><td>#17</td><td>Anomaly report (auto)</td><td>INFO</td><td>GA4 Intelligence (UI anom…</td><td>Not exposed via Data API …</td></tr></tbody></table>
+<h2>🔴 Firing / pending — detail</h2>
+<table><thead><tr><th>#</th><th>Status</th><th>Finding / action</th></tr></thead><tbody><tr><td>#8</td><td>FIRING</td><td>shift: Cross-network -11.2pp</td></tr><tr><td>#15</td><td>FIRING</td><td>regress: gamma clicks 64%; ai presentation pos 5.4→7.7; pre…</td></tr></tbody></table>
+<p class='note'>48h-lag permanent. #13 cost-per-signup needs Google Ads re-auth.</p>
+<footer>Auto-generated from the Slack report (identical data).</footer>
+</div></body></html>
