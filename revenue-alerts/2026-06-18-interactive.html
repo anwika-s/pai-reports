@@ -1,0 +1,157 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex,nofollow">
+<title>Daily revenue alerts — interactive</title>
+<style>
+:root{--bg:#0f1419;--panel:#1a1f26;--panel2:#2a313b;--bd:rgba(255,255,255,.14);--text:#e6e9ef;
+--muted:#9aa3ad;--hint:#7a828c;--bad:#f87171;--bad2:#3a1d1d;--ok:#5dcaa5;--ok2:#10362c;--accent:#60a5fa;
+--mono:ui-monospace,Menlo,Consolas,monospace;--sans:-apple-system,BlinkMacSystemFont,'Segoe UI',Inter,sans-serif}
+*{box-sizing:border-box}
+body{margin:0;padding:26px 18px;background:var(--bg);color:var(--text);font-family:var(--sans);line-height:1.5}
+.wrap{max-width:920px;margin:0 auto}
+h1{font-size:21px;font-weight:500;margin:0 0 2px}
+.sub{font-size:13px;color:var(--muted);margin:0 0 16px}
+.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:0 0 18px}
+.mc{background:var(--panel2);border-radius:8px;padding:.8rem 1rem}
+.mc .l{font-size:12px;color:var(--muted)}.mc .v{font-size:23px;font-weight:500;margin-top:2px}
+.bar{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:0 0 12px}
+.chip{font-size:12px;padding:5px 12px;border-radius:20px;border:0.5px solid var(--bd);background:var(--panel);
+color:var(--muted);cursor:pointer;user-select:none}
+.chip.on{background:var(--accent);color:#06121f;border-color:var(--accent);font-weight:500}
+input.search{flex:1;min-width:150px;background:var(--panel);border:0.5px solid var(--bd);color:var(--text);
+border-radius:8px;padding:7px 11px;font-size:13px;font-family:var(--sans)}
+table{width:100%;border-collapse:collapse;font-size:13px}
+thead th{text-align:left;color:var(--muted);font-weight:500;padding:8px 9px;border-bottom:0.5px solid var(--bd);
+cursor:pointer;white-space:nowrap;user-select:none}
+thead th .ar{color:var(--accent);font-size:10px}
+tbody tr.kpi{border-bottom:0.5px solid var(--bd);cursor:pointer}
+tbody tr.kpi:hover{background:var(--panel)}
+tbody tr.kpi.fire{background:rgba(248,113,113,.06)}
+td{padding:9px;vertical-align:middle}
+.aid{font-family:var(--mono);font-size:11px;color:var(--hint)}
+.name{font-weight:500}
+.st{font-size:11px;font-weight:500;padding:3px 9px;border-radius:7px;white-space:nowrap}
+.st.fire{background:var(--bad2);color:var(--bad)}.st.ok{background:var(--ok2);color:var(--ok)}
+.delta{font-variant-numeric:tabular-nums}
+.pos{color:var(--ok)}.neg{color:var(--bad)}
+.detail{display:none}.detail.open{display:table-row}
+.panel{background:var(--panel);border-radius:8px;padding:14px 16px;margin:4px 0}
+.kv{display:grid;grid-template-columns:130px 1fr;gap:8px;font-size:12.5px;padding:3px 0}
+.kv .k{color:var(--muted);text-transform:uppercase;font-size:11px;letter-spacing:.03em}
+.kv code{background:#0a0c12;border:0.5px solid var(--bd);padding:1px 5px;border-radius:3px;font-size:11.5px}
+pre{background:#0a0c12;border:0.5px solid var(--bd);border-radius:6px;padding:9px 12px;font-size:11.5px;
+overflow-x:auto;white-space:pre-wrap;color:var(--text)}
+.sub2{color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.03em;margin:14px 0 6px}
+.mini{width:100%;border-collapse:collapse;font-size:12px}
+.mini td{padding:4px 8px;border-bottom:0.5px solid rgba(255,255,255,.06)}
+.mini td.r{text-align:right;font-variant-numeric:tabular-nums}
+.barfill{display:inline-block;height:9px;background:var(--accent);border-radius:2px;vertical-align:middle;margin-left:6px}
+footer{color:var(--hint);font-size:11.5px;margin-top:24px;padding-top:12px;border-top:0.5px solid var(--bd)}
+.hint{color:var(--hint);font-size:11.5px;margin:2px 0 12px}
+</style></head><body><div class="wrap">
+<h1>Daily revenue alerts <span style="color:var(--hint);font-weight:400" id="ttl"></span></h1>
+<p class="sub" id="sub"></p>
+<div class="cards" id="cards"></div>
+<div class="bar">
+  <span class="chip on" data-f="all">All</span>
+  <span class="chip" data-f="FIRING">🔴 Firing</span>
+  <span class="chip" data-f="OK">🟢 OK</span>
+  <input class="search" id="q" placeholder="Search KPIs…">
+</div>
+<p class="hint">Click any row to expand details &amp; drill-downs · click column headers to sort.</p>
+<table><thead><tr>
+  <th data-k="aid">#</th><th data-k="name">KPI</th><th data-k="status">Status</th>
+  <th data-k="cur">Yesterday (D-1)</th><th data-k="pctNum">Δ vs med</th><th data-k="none">Trend (7d→D-1)</th>
+</tr></thead><tbody id="tb"></tbody></table>
+<footer id="ft"></footer></div>
+<script>
+const D = {"target": "2026-06-18", "baseline": "2026-06-11 \u2026 2026-06-17", "days": ["2026-06-11", "2026-06-12", "2026-06-13", "2026-06-14", "2026-06-15", "2026-06-16", "2026-06-17", "2026-06-18"], "n_fire": 0, "n_ok": 12, "top_subs": [["Gold", "STRIPE", "BRL", 2747.5, 549.5], ["Gold", "STRIPE", "EUR", 510.0, 545.7], ["Pro", "PADDLE", "KRW", 358000.0, 259.42], ["Pro", "PADDLE", "CAD", 340.0, 251.6], ["Pro", "PADDLE", "USD", 240.0, 240.0]], "kpis": [{"aid": "R1", "tier": "p1", "name": "Gross revenue (USD)", "status": "OK", "cur": "$11,557 gross", "base": "$7,035 (7d med) \u00b7 164%", "detail": "USD-normalized is_stripepayments", "series": [7034.58, 7026.31, 6133.51, 6102.92, 7584.59, 8734.07, 8205.22, 11556.78], "fmt": "usd", "valNum": 11556.78, "pctNum": 164, "meta": [["Metric", "<code>SUM(amount\u2192USD) over is_stripepayments</code>"], ["Dimension", "IST day"], ["Threshold", "Yesterday &lt; 70% of trailing 7-day median"], ["Why", "The headline. A sharp drop = gateway outage, billing failure, pricing-page regression, or a tracking/webhook break."], ["Owner", "revenue on-call"], ["Frequency", "Daily 10:00 IST"]], "query": "SELECT day, SUM(FX\u2192USD) FROM is_stripepayments GROUP BY IST day", "drill": {"Gateway": [["PADDLE", 5653.28], ["STRIPE", 5298.17], ["RAZORPAY", 605.33], ["APPLE", 0], ["MSTEAMS", 0]], "Plan": [["Pro", 7167.2], ["Education", 1692.55], ["Gold", 1285.68], ["Basic", 790.13], ["Export", 385.02], ["Credits", 236.21]], "Country": [["United States", 2415.87], ["India", 1330.85], ["Brazil", 1156.1], ["Canada", 646.16], ["Saudi Arabia", 636.0], ["Germany", 545.7], ["Mexico", 422.56], ["France", 353.1], ["South Korea", 324.63], ["Philippines", 262.86], ["Spain", 212.23], ["Indonesia", 212.1]]}}, {"aid": "R2", "tier": "p1", "name": "Paying users", "status": "OK", "cur": "114 paying users", "base": "76 (7d med) \u00b7 150%", "detail": "", "series": [76.0, 74.0, 63.0, 66.0, 89.0, 116.0, 92.0, 114.0], "fmt": "int", "valNum": 114.0, "pctNum": 150, "meta": [["Metric", "<code>COUNT(DISTINCT userid)</code>"], ["Dimension", "IST day"], ["Threshold", "&lt; 70% of 7-day median"], ["Why", "Decouples 'fewer buyers' from 'smaller tickets'. A volume drop with steady ARPU points at acquisition/checkout, not pricing."], ["Owner", "revenue on-call"], ["Frequency", "Daily"]], "query": "SELECT day, COUNT(DISTINCT userid) FROM is_stripepayments GROUP BY IST day", "drill": null}, {"aid": "R3", "tier": "p1", "name": "New-business revenue (first-ever payers)", "status": "OK", "cur": "$7,893 new-biz (83 payers)", "base": "$4,620 (7d med) \u00b7 171%", "detail": "user's first-ever payment is today", "series": [4104.38, 4619.57, 2593.51, 3054.5, 5244.72, 5662.08, 5143.18, 7892.85], "fmt": "usd", "valNum": 7892.85, "pctNum": 171, "meta": [["Metric", "<code>SUM(USD) where user's first-ever payment is today</code>"], ["Dimension", "IST day"], ["Threshold", "&lt; 70% of 7-day median"], ["Why", "The growth engine \u2014 net-new customers, not renewals. The most direct read on whether acquisition is converting to money."], ["Owner", "growth + revenue"], ["Frequency", "Daily"]], "query": "JOIN MIN(createdon) per userid; bucket where first-pay IST day = pay IST day", "drill": null}, {"aid": "R4", "tier": "p1", "name": "Renewal count (all gateways)", "status": "OK", "cur": "27 renewals", "base": "24 (7d med) \u00b7 112%", "detail": "is_subscription_renewals type='renewal'", "series": [27.0, 21.0, 27.0, 21.0, 12.0, 24.0, 25.0, 27.0], "fmt": "int", "valNum": 27.0, "pctNum": 112, "meta": [["Metric", "<code>COUNT(*) is_subscription_renewals type='renewal'</code>"], ["Dimension", "IST day"], ["Threshold", "&lt; 70% of 7-day median"], ["Why", "Renewals are the recurring base. A drop = involuntary churn (card failures, dunning) or a billing-cron problem before it shows in MRR."], ["Owner", "revenue on-call"], ["Frequency", "Daily"]], "query": "SELECT day, COUNT(*) FROM is_subscription_renewals WHERE type='renewal' GROUP BY IST day", "drill": null}, {"aid": "R5", "tier": "p1", "name": "Payment-failure spike", "status": "OK", "cur": "75 payment failures", "base": "50 (7d med) \u00b7 150%", "detail": "CH payment_flow_end failure; ratio vs own median cancels undercount", "series": [50.0, 48.0, 48.0, 42.0, 80.0, 149.0, 72.0, 75.0], "fmt": "int", "valNum": 75.0, "pctNum": 150, "meta": [["Metric", "<code>countIf(payment_flow_end status='failure')</code>"], ["Dimension", "IST day"], ["Threshold", "&gt; 150% of 7-day median"], ["Why", "Leading signal from the event stream \u2014 3DS friction, payment-method outage, or a Stripe webhook problem before lost revenue lands in MySQL."], ["Owner", "payments-ops"], ["Frequency", "Daily"]], "query": "SELECT day, countIf(event='payment_flow_end' AND status='failure') FROM eventcollection GROUP BY IST day", "drill": null}, {"aid": "R6", "tier": "p2", "name": "ARPU (USD per paying user)", "status": "OK", "cur": "$101/payer ARPU", "base": "$92 (7d med) \u00b7 110%", "detail": "", "series": [92.56, 94.95, 97.36, 92.47, 85.22, 75.29, 89.19, 101.38], "fmt": "usd", "valNum": 101.38, "pctNum": 110, "meta": [["Metric", "<code>gross USD / paying users</code>"], ["Dimension", "IST day"], ["Threshold", "Drops &gt; 20% vs 7-day median"], ["Why", "Ticket size. A drop with steady volume = discount-heavy mix, plan downshift, or FX/region mix moving toward cheaper markets."], ["Owner", "revenue"], ["Frequency", "Daily"]], "query": "gross_usd / COUNT(DISTINCT userid) per IST day", "drill": null}, {"aid": "R7", "tier": "p2", "name": "T1-market revenue", "status": "OK", "cur": "$6,258 T1 revenue", "base": "$3,905 (7d med) \u00b7 160%", "detail": "high-ARPU markets (30 README countries)", "series": [3905.08, 4317.57, 3656.8, 3244.31, 3959.6, 3435.85, 4063.8, 6257.74], "fmt": "usd", "valNum": 6257.74, "pctNum": 160, "meta": [["Metric", "<code>SUM(USD) where is_profile.country IN T1</code>"], ["Dimension", "IST day \u00b7 country"], ["Threshold", "&lt; 75% of 7-day median"], ["Why", "T1 = highest-ARPU markets. A geo-weighted revenue drop usually signals a regional payment-provider or pricing issue."], ["Owner", "revenue + growth"], ["Frequency", "Daily"]], "query": "is_stripepayments JOIN is_profile ON user_id; filter country IN T1; SUM(USD) per day", "drill": {"Country": [["United States", 2415.87], ["India", 1330.85], ["Brazil", 1156.1], ["Canada", 646.16], ["Saudi Arabia", 636.0], ["Germany", 545.7], ["Mexico", 422.56], ["France", 353.1], ["South Korea", 324.63], ["Philippines", 262.86], ["Spain", 212.23], ["Indonesia", 212.1]]}}, {"aid": "R8", "tier": "p2", "name": "Gateway health", "status": "OK", "cur": "5 gateways \u00b7 top PADDLE $5,653", "base": "each gateway vs its own 7d median", "detail": "all gateways within band", "series": null, "fmt": null, "valNum": null, "pctNum": null, "meta": [["Metric", "<code>SUM(USD) per gateway</code>"], ["Dimension", "IST day \u00b7 gateway"], ["Threshold", "Any gateway (7d med \u2265 $300) &lt; 50% of its own median"], ["Why", "Catches a single processor breaking (Stripe / Razorpay / Paddle / Apple / Google) while the others mask it in the total."], ["Owner", "payments-ops"], ["Frequency", "Daily"]], "query": "SELECT day, gateway, SUM(USD) FROM is_stripepayments GROUP BY day, gateway", "drill": {"Gateway": [["PADDLE", 5653.28], ["STRIPE", 5298.17], ["RAZORPAY", 605.33], ["APPLE", 0], ["MSTEAMS", 0]]}}, {"aid": "R9", "tier": "p2", "name": "Plan-mix shift", "status": "OK", "cur": "biggest: Gold", "base": "share \u00b115pp vs 7d median", "detail": "no plan family shifted >15pp", "series": null, "fmt": null, "valNum": null, "pctNum": null, "meta": [["Metric", "<code>revenue share per plan family</code>"], ["Dimension", "plan family"], ["Threshold", "Any family's revenue share moves &gt; 15pp vs 7-day median"], ["Why", "Composition risk even when the total holds \u2014 e.g. Pro collapsing while Export spikes signals a pricing or funnel regression."], ["Owner", "revenue"], ["Frequency", "Daily"]], "query": "share = family_usd / gross_usd per day; families: Pro/Education/Gold/Basic/Export/Credits/Order", "drill": {"Plan": [["Pro", 7167.2], ["Education", 1692.55], ["Gold", 1285.68], ["Basic", 790.13], ["Export", 385.02], ["Credits", 236.21]]}}, {"aid": "R10", "tier": "p2", "name": "One-off revenue (Export + AI credits)", "status": "OK", "cur": "$621 one-off", "base": "$403 (7d med) \u00b7 154%", "detail": "Document Export + GPT3 Credits", "series": [204.26, 546.26, 107.48, 402.76, 834.34, 603.07, 294.2, 621.23], "fmt": "usd", "valNum": 621.23, "pctNum": 154, "meta": [["Metric", "<code>SUM(USD) where item_name IN ('Document Export','GPT3 Credits')</code>"], ["Dimension", "IST day"], ["Threshold", "&lt; 70% of 7-day median"], ["Why", "Non-subscription, transactional revenue. Reacts fast to export/credit pricing changes and paywall placement."], ["Owner", "revenue + product"], ["Frequency", "Daily"]], "query": "SELECT day, SUM(USD) FROM is_stripepayments WHERE item_name IN ('Document Export','GPT3 Credits') GROUP BY day", "drill": {"One-off item": [["Document Export", 385.02], ["GPT3 Credits", 236.21]]}}, {"aid": "R11", "tier": "p3", "name": "New-customer conversion (new payers \u00f7 signups)", "status": "OK", "cur": "0.59% (83 new payers / 14,007 signups)", "base": "0.45% (7d med) \u00b7 131%", "detail": "blended new-customer acquisition efficiency", "series": [0.375, 0.482, 0.399, 0.452, 0.488, 0.533, 0.43, 0.593], "fmt": "pct", "valNum": 0.593, "pctNum": 131, "meta": [["Metric", "<code>new-business payers / CH signups</code>"], ["Dimension", "IST day"], ["Threshold", "&lt; 80% of 7-day median"], ["Why", "Blended acquisition efficiency \u2014 how many of the day's signups turn into net-new paying customers. Leading indicator of new-business revenue."], ["Owner", "growth + revenue"], ["Frequency", "Daily"]], "query": "new_business_payers (MySQL) / signups (CH user_account_finish) per IST day", "drill": null}, {"aid": "R12", "tier": "p3", "name": "Cancellation spike", "status": "OK", "cur": "22 cancellations", "base": "30 (7d med) \u00b7 73%", "detail": "is_subscription_renewals type='cancellation'", "series": [33.0, 32.0, 28.0, 19.0, 24.0, 34.0, 30.0, 22.0], "fmt": "int", "valNum": 22.0, "pctNum": 73, "meta": [["Metric", "<code>COUNT(*) is_subscription_renewals type='cancellation'</code>"], ["Dimension", "IST day"], ["Threshold", "&gt; 150% of 7-day median"], ["Why", "Voluntary-churn early warning. A spike = a pricing/product change, a failed renewal wave, or an exit-intent flow regression."], ["Owner", "retention + revenue"], ["Frequency", "Daily"]], "query": "SELECT day, COUNT(*) FROM is_subscription_renewals WHERE type='cancellation' GROUP BY IST day", "drill": null}]};
+const $ = s => document.querySelector(s);
+let filter='all', q='', sortK='aid', sortAsc=true;
+
+function money(n){return '$'+Math.round(n).toLocaleString()}
+function spark(series, fire){
+  if(!series||series.length<2) return '<span style="color:var(--hint)">—</span>';
+  const w=104,h=26,p=3,mn=Math.min(...series),mx=Math.max(...series),rg=(mx-mn)||1;
+  const x=i=>p+i*(w-2*p)/(series.length-1), y=v=>h-p-(v-mn)/rg*(h-2*p);
+  const pts=series.map((v,i)=>x(i).toFixed(1)+','+y(v).toFixed(1)).join(' ');
+  const col=fire?'#f87171':'#5dcaa5', last=series.length-1;
+  return '<svg width="'+w+'" height="'+h+'" style="vertical-align:middle">'
+    +'<polyline fill="none" stroke="'+col+'" stroke-width="1.5" points="'+pts+'"/>'
+    +'<circle cx="'+x(last).toFixed(1)+'" cy="'+y(series[last]).toFixed(1)+'" r="2.4" fill="'+col+'"/></svg>';
+}
+function deltaCell(k){
+  if(k.pctNum==null) return '<span style="color:var(--hint)">—</span>';
+  const up=k.pctNum>=100, good=(k.aid!=='R5'&&k.aid!=='R12')?up:!up;
+  return '<span class="delta '+(good?'pos':'neg')+'">'+k.pctNum+'%</span>';
+}
+function miniTable(title, rows){
+  if(!rows||!rows.length) return '';
+  const mx=Math.max(...rows.map(r=>r[1]))||1;
+  let h='<div class="sub2">'+title+'</div><table class="mini">';
+  for(const [n,v] of rows){
+    const wpx=Math.max(2,Math.round(v/mx*90));
+    h+='<tr><td>'+n+'</td><td class="r">'+money(v)+'<span class="barfill" style="width:'+wpx+'px"></span></td></tr>';
+  }
+  return h+'</table>';
+}
+function panel(k){
+  let h='<div class="panel">';
+  for(const [kk,vv] of k.meta) h+='<div class="kv"><div class="k">'+kk+'</div><div>'+vv+'</div></div>';
+  if(k.series){
+    h+='<div class="sub2">Day-by-day ('+D.days[0]+' → '+D.days[D.days.length-1]+')</div><table class="mini">';
+    for(let i=0;i<D.days.length;i++){
+      const last=i===D.days.length-1;
+      const val=k.fmt==='usd'?money(k.series[i]):k.fmt==='pct'?k.series[i].toFixed(2)+'%':Math.round(k.series[i]).toLocaleString();
+      h+='<tr><td'+(last?' style="color:var(--accent)"':'')+'>'+D.days[i]+(last?' · D-1':'')+'</td><td class="r"'+(last?' style="color:var(--accent)"':'')+'>'+val+'</td></tr>';
+    }
+    h+='</table>';
+  }
+  if(k.drill) for(const t in k.drill) h+=miniTable(t+' breakdown (D-1)', k.drill[t]);
+  h+='<div class="sub2">Source / query</div><pre>'+k.query+'</pre></div>';
+  return h;
+}
+function render(){
+  let list=D.kpis.filter(k=>(filter==='all'||k.status===filter)&&k.name.toLowerCase().includes(q));
+  list.sort((a,b)=>{
+    let x=a[sortK],y=b[sortK];
+    if(sortK==='pctNum'){x=x==null?-1:x;y=y==null?-1:y}
+    if(typeof x==='string'){x=x.toLowerCase();y=y.toLowerCase()}
+    return (x<y?-1:x>y?1:0)*(sortAsc?1:-1);
+  });
+  let h='';
+  for(const k of list){
+    const fire=k.status==='FIRING';
+    h+='<tr class="kpi'+(fire?' fire':'')+'" data-aid="'+k.aid+'">'
+      +'<td class="aid">'+k.aid+'</td><td class="name">'+k.name+'</td>'
+      +'<td><span class="st '+(fire?'fire':'ok')+'">'+k.status+'</span></td>'
+      +'<td>'+k.cur+'</td><td>'+deltaCell(k)+'</td><td>'+spark(k.series,fire)+'</td></tr>'
+      +'<tr class="detail" data-for="'+k.aid+'"><td colspan="6">'+panel(k)+'</td></tr>';
+  }
+  $('#tb').innerHTML=h;
+  document.querySelectorAll('tr.kpi').forEach(tr=>tr.onclick=()=>{
+    const d=document.querySelector('tr.detail[data-for="'+tr.dataset.aid+'"]');d.classList.toggle('open');
+  });
+}
+function init(){
+  $('#ttl').textContent='— '+D.target+' (IST · D-1)';
+  $('#sub').textContent='baseline = trailing 7-day median ('+D.baseline+') · MySQL is_stripepayments + renewals (FX→USD) · ClickHouse funnel.';
+  $('#cards').innerHTML=
+    '<div class="mc"><div class="l">Firing</div><div class="v" style="color:'+(D.n_fire?'var(--bad)':'var(--ok)')+'">'+D.n_fire+'</div></div>'
+   +'<div class="mc"><div class="l">OK</div><div class="v" style="color:var(--ok)">'+D.n_ok+'</div></div>'
+   +'<div class="mc"><div class="l">Total KPIs</div><div class="v">'+D.kpis.length+'</div></div>'
+   +'<div class="mc"><div class="l">Target day</div><div class="v" style="font-size:17px">'+D.target.slice(5)+' <span style="font-size:12px;color:var(--hint)">D-1</span></div></div>';
+  $('#ft').textContent='Generated for '+D.target+'. Refunds/chargebacks not yet trackable. Highest-subscription ranking applies the amount>0 + mapped-currency guard.';
+  document.querySelectorAll('.chip').forEach(c=>c.onclick=()=>{
+    document.querySelectorAll('.chip').forEach(x=>x.classList.remove('on'));c.classList.add('on');filter=c.dataset.f;render();
+  });
+  $('#q').oninput=e=>{q=e.target.value.toLowerCase();render();};
+  document.querySelectorAll('thead th').forEach(th=>th.onclick=()=>{
+    const k=th.dataset.k; if(k==='none')return;
+    if(sortK===k)sortAsc=!sortAsc;else{sortK=k;sortAsc=true;}
+    document.querySelectorAll('thead th').forEach(x=>{x.querySelector('.ar')&&x.querySelector('.ar').remove()});
+    th.insertAdjacentHTML('beforeend',' <span class="ar">'+(sortAsc?'▲':'▼')+'</span>');render();
+  });
+  render();
+}
+init();
+</script></body></html>
