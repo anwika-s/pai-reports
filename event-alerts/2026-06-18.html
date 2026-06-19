@@ -1,0 +1,38 @@
+<!doctype html><html><head><meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Event-level daily alerts — 2026-06-18 (IST · D-1)</title><style>:root{--bg:#0f1419;--panel:#1a1f26;--border:#2d343d;--text:#e6e9ef;--muted:#9aa3ad;
+--good:#4ade80;--warn:#fbbf24;--bad:#f87171;--blue:#60a5fa}
+*{box-sizing:border-box}
+body{margin:0;padding:32px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Inter,sans-serif;
+background:var(--bg);color:var(--text);line-height:1.55}
+.wrap{max-width:1000px;margin:0 auto}
+h1{font-size:24px;margin:0 0 6px;font-weight:600}
+h2{font-size:15px;margin:26px 0 4px;color:#bfdbfe}
+.note{color:var(--muted);font-size:12px;margin:6px 0}
+table{width:100%;border-collapse:collapse;font-size:12.5px;background:var(--panel);
+border:1px solid var(--border);border-radius:8px;overflow:hidden;margin:6px 0 4px}
+th,td{padding:7px 12px;border-bottom:1px solid var(--border);text-align:left;white-space:pre}
+th{background:#202733;color:var(--muted);font-weight:600;font-size:10.5px;text-transform:uppercase;letter-spacing:.04em}
+tbody tr:last-child td{border-bottom:none}
+td:not(:first-child),th:not(:first-child){text-align:right}
+tr.total td{font-weight:700;background:rgba(96,165,250,.08)}
+pre{background:#0a0c12;border:1px solid var(--border);border-radius:6px;padding:10px 14px;font-size:11.5px;overflow-x:auto}
+footer{color:var(--muted);font-size:11px;margin-top:28px;padding-top:12px;border-top:1px solid var(--border)}</style></head><body><div class="wrap">
+<h1>Event-level daily alerts — 2026-06-18 (IST · D-1)</h1>
+<p class='note'>Previous day · baseline = trailing 7d (2026-06-11 … 2026-06-17) · ClickHouse event funnel.</p>
+<h2>Summary</h2>
+<table><thead><tr><th>Result</th><th>Count</th></tr></thead><tbody><tr><td>🔴 Firing</td><td>2</td></tr><tr><td>🟢 OK</td><td>17</td></tr><tr><td>⚪ Info</td><td>4</td></tr><tr class='total'><td>Total</td><td>23</td></tr></tbody></table>
+<h2>P1 — Page on-call (5)</h2>
+<table><thead><tr><th>#</th><th>Alert</th><th>Status</th><th>Yesterday (D-1)</th><th>Baseline · Δ</th></tr></thead><tbody><tr><td>P1.1</td><td>Daily user_account_finish (si…</td><td>OK</td><td>14,007 signups</td><td>12,526 (7d med) · 112%</td></tr><tr><td>P1.2</td><td>payment_flow_start → payment_…</td><td>OK</td><td>1.75% (84/4,788)</td><td>1.50% (7d med) · 117%</td></tr><tr><td>P1.3</td><td>pay_start → PaymentInfoScreen…</td><td>OK</td><td>17.3% (828 reached Paymen…</td><td>19.7% (7d med) · 88%</td></tr><tr><td>P1.4</td><td>StripeScreen → payment succes…</td><td>OK</td><td>10.1% (84/835 StripeScree…</td><td>8.1% (7d med) · 124%</td></tr><tr><td>P1.5</td><td>payment_flow_end status=&#x27;fail…</td><td>OK</td><td>75 failures (0.7% of pay_…</td><td>50 (7d med) · 150%</td></tr></tbody></table>
+<h2>P2 — Slack daily (8)</h2>
+<table><thead><tr><th>#</th><th>Alert</th><th>Status</th><th>Yesterday (D-1)</th><th>Baseline · Δ</th></tr></thead><tbody><tr><td>P2.1</td><td>Signup → onboarding_finish ra…</td><td>OK</td><td>60.0% (8,401/14,007)</td><td>60.0% (7d med) · 100%</td></tr><tr><td>P2.2</td><td>Signup → first doc_create.end…</td><td>OK</td><td>55.5% (7,777 finished a d…</td><td>53.0% (7d med) · 105%</td></tr><tr><td>P2.3</td><td>doc_create.end → payment_flow…</td><td>OK</td><td>61.6% (4,788 reached payw…</td><td>59.1% (7d med) · 104%</td></tr><tr><td>P2.4</td><td>payment_flow_end status=&#x27;canc…</td><td>OK</td><td>93.6% cancel (9,381)</td><td>94.1% (7d med) · 99%</td></tr><tr><td>P2.5</td><td>doc_create.attachment_init → …</td><td>OK</td><td>132.6% (4,414/3,328)</td><td>134.1% (7d med) · 99%</td></tr><tr><td>P2.6</td><td>Per-country-tier pay-success …</td><td>OK</td><td>T1 4.2% pay-success · IN/…</td><td>each tier vs its own 7d m…</td></tr><tr><td>P2.7</td><td>Per-device pay-success rate (…</td><td>OK</td><td>desktop/mobile/tablet pay…</td><td>each device vs its own 7d…</td></tr><tr><td>P2.8</td><td>Pricing variant close-rate di…</td><td>OK</td><td>1 variants &gt;100 starts</td><td>flag if a variant &gt;15% be…</td></tr></tbody></table>
+<h2>P3 — Anomaly (7 · 2 firing)</h2>
+<table><thead><tr><th>#</th><th>Alert</th><th>Status</th><th>Yesterday (D-1)</th><th>Baseline · Δ</th></tr></thead><tbody><tr><td>P3.1</td><td>New stepName appearing in pay…</td><td>OK</td><td>0 new stepName(s)</td><td>none above gate vs D-30…D…</td></tr><tr><td>P3.2</td><td>New entryPointPage appearing</td><td>OK</td><td>0 new entryPointPage(s)</td><td>none above gate vs D-30…D…</td></tr><tr><td>P3.3</td><td>New pricingVariantName appear…</td><td>OK</td><td>0 new pricingVariant(s)</td><td>none above gate vs D-30…D…</td></tr><tr><td>P3.4</td><td>Sudden new-event spike</td><td>OK</td><td>0 new event(s)</td><td>none above gate vs D-30…D…</td></tr><tr><td>P3.5</td><td>Editor loads with no doc_crea…</td><td>FIRING</td><td>2,425 phantom docs</td><td>editor_load with no doc_c…</td></tr><tr><td>P3.6</td><td>attachment_init without attac…</td><td>FIRING</td><td>411 silent upload failures</td><td>attachment_init with no c…</td></tr><tr><td>P3.7</td><td>User-path sequence shift</td><td>INFO</td><td>top-3 payment step sequen…</td><td>OrderPPTScreenNewOpen (2,…</td></tr></tbody></table>
+<h2>P4 — Weekly / context (3)</h2>
+<table><thead><tr><th>#</th><th>Alert</th><th>Status</th><th>Yesterday (D-1)</th><th>Baseline · Δ</th></tr></thead><tbody><tr><td>P4.1</td><td>Week-over-week signup → pay_s…</td><td>INFO</td><td>86,491 signups → 494 paid…</td><td>7-day window (D-8…D-1)</td></tr><tr><td>P4.2</td><td>Weekly top errors / failures …</td><td>INFO</td><td>top failure/cancel events…</td><td>payment_flow_end/cancel 2…</td></tr><tr><td>P4.3</td><td>Weekly revenue retrospective …</td><td>INFO</td><td>revenue retro = see clean…</td><td>MySQL is_stripepayments F…</td></tr></tbody></table>
+<h2>🔴 Firing — detail</h2>
+<table><thead><tr><th>#</th><th>Finding</th></tr></thead><tbody><tr><td>P3.5</td><td>investigate generation-service hangs</td></tr><tr><td>P3.6</td><td>investigate upload timeouts</td></tr></tbody></table>
+<p class='note'>Thresholds per the event-alerts plan; sparse per-segment success guarded by the n&lt;30 rule.</p>
+<footer>Auto-generated from the Slack report (identical data).</footer>
+</div></body></html>
