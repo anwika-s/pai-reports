@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Top-of-funnel daily KPIs — 2026-06-17 (IST · D-2)</title>
+<style>
+:root{
+  --bg:#faf9f5; --panel:#ffffff; --panel2:#f3f1ea; --border:rgba(0,0,0,.12);
+  --text:#1a1a18; --muted:#5f5e5a; --hint:#8a8980;
+  --danger-bg:#fcebeb; --danger-tx:#a32d2d; --danger-bd:rgba(163,45,45,.4);
+  --ok-bg:#e1f5ee; --ok-tx:#0f6e56;
+  --mono:ui-monospace,Menlo,Consolas,monospace;
+  --sans:-apple-system,BlinkMacSystemFont,'Segoe UI',Inter,Helvetica,Arial,sans-serif;
+}
+@media (prefers-color-scheme:dark){
+  :root{ --bg:#1a1f26; --panel:#222831; --panel2:#2a313b; --border:rgba(255,255,255,.14);
+         --text:#e6e9ef; --muted:#9aa3ad; --hint:#7a828c;
+         --danger-bg:#3a1d1d; --danger-tx:#f09595; --danger-bd:rgba(240,149,149,.45);
+         --ok-bg:#10362c; --ok-tx:#5dcaa5; }
+}
+*{box-sizing:border-box}
+body{margin:0;padding:28px 18px;background:var(--bg);color:var(--text);font-family:var(--sans);line-height:1.5}
+.wrap{max-width:760px;margin:0 auto}
+h1{font-size:21px;font-weight:500;margin:0 0 2px}
+.sub{font-size:13px;color:var(--muted);margin:0 0 18px}
+.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:0 0 22px}
+.mc{background:var(--panel2);border-radius:8px;padding:.9rem 1rem}
+.mc .l{font-size:12px;color:var(--muted)}
+.mc .v{font-size:24px;font-weight:500;margin-top:2px}
+.tier{font-size:13px;color:var(--muted);font-weight:500;margin:22px 0 8px}
+.row{display:grid;grid-template-columns:24px 1fr auto;gap:12px;align-items:center;
+     border:0.5px solid var(--border);border-radius:8px;padding:.6rem .85rem;margin-bottom:8px;background:var(--panel)}
+.row.fire{border-color:var(--danger-bd)}
+.rnum{font-family:var(--mono);font-size:12px;color:var(--hint)}
+.rtop{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.rname{font-size:14px;font-weight:500}
+.src{display:inline-flex;align-items:center;gap:5px;font-size:11px;color:var(--muted);
+     border:0.5px solid var(--border);border-radius:8px;padding:1px 7px}
+.dot{width:7px;height:7px;border-radius:50%}
+.rsub{display:flex;gap:10px;flex-wrap:wrap;margin-top:3px;font-size:12px}
+.base{color:var(--muted)}
+.st{font-size:11px;font-weight:500;padding:3px 10px;border-radius:8px;white-space:nowrap}
+.st.fire{background:var(--danger-bg);color:var(--danger-tx)}
+.st.ok{background:var(--ok-bg);color:var(--ok-tx)}
+footer{color:var(--hint);font-size:11.5px;margin-top:26px;padding-top:12px;border-top:0.5px solid var(--border)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<h1>Top-of-funnel daily KPIs — 2026-06-17 <span style="color:var(--hint);font-weight:400">(IST · D-2)</span></h1>
+<p class="sub">48-hour-lagged day · baseline = trailing 7-day median (2026-06-10 … 2026-06-16) · GA4 + Search Console + ClickHouse. 12 KPIs · 4 firing.</p>
+
+<div class="cards">
+  <div class="mc"><div class="l">Firing</div><div class="v" style="color:var(--danger-tx)">4</div></div>
+  <div class="mc"><div class="l">OK</div><div class="v" style="color:var(--ok-tx)">8</div></div>
+  <div class="mc"><div class="l">Total KPIs</div><div class="v">12</div></div>
+  <div class="mc"><div class="l">Target day</div><div class="v" style="font-size:17px">06-17 <span style="font-size:12px;color:var(--hint)">D-2</span></div></div>
+</div>
+
+<div class="tier">P1 — page (on-call) · 1 firing</div>
+
+<div class="row fire">
+  <div class="rnum">1</div>
+  <div>
+    <div class="rtop"><span class="rname">Total daily sessions</span><span class="src"><span class="dot" style="background:#378ADD"></span>GA4</span></div>
+    <div class="rsub"><span>39,416 sessions</span><span class="base">vs 54,366 median · 73%</span></div>
+  </div>
+  <div class="st fire">Firing</div>
+</div>
+
+<div class="row">
+  <div class="rnum">2</div>
+  <div>
+    <div class="rtop"><span class="rname">Daily signups (volume + rate)</span><span class="src"><span class="dot" style="background:#7F77DD"></span>multi</span></div>
+    <div class="rsub"><span>13,727 signups · 40.0% rate</span><span class="base">12,526 median · 110% vol · rate 183%</span></div>
+  </div>
+  <div class="st ok">OK</div>
+</div>
+
+<div class="row">
+  <div class="rnum">3</div>
+  <div>
+    <div class="rtop"><span class="rname">Activation — signup → first deck</span><span class="src"><span class="dot" style="background:#1D9E75"></span>ClickHouse</span></div>
+    <div class="rsub"><span>52.4% activated (7,198 / 13,727)</span><span class="base">51.4% median · 102%</span></div>
+  </div>
+  <div class="st ok">OK</div>
+</div>
+
+<div class="row">
+  <div class="rnum">4</div>
+  <div>
+    <div class="rtop"><span class="rname">T1 signup volume</span><span class="src"><span class="dot" style="background:#378ADD"></span>GA4</span></div>
+    <div class="rsub"><span>1,264 T1 signups</span><span class="base">1,093 median · 116%</span></div>
+  </div>
+  <div class="st ok">OK</div>
+</div>
+
+<div class="row fire">
+  <div class="rnum">5</div>
+  <div>
+    <div class="rtop"><span class="rname">Paid acquisition health</span><span class="src"><span class="dot" style="background:#7F77DD"></span>multi</span></div>
+    <div class="rsub"><span>3,572 paid sess · $5,231 spend · $5.45/conv</span><span class="base">sess 134% · spend 183% · CPS 427%</span></div>
+  </div>
+  <div class="st fire">Firing</div>
+</div>
+
+<div class="tier">P2 — slack daily · 1 firing</div>
+
+<div class="row">
+  <div class="rnum">6</div>
+  <div>
+    <div class="rtop"><span class="rname">Non-branded organic clicks</span><span class="src"><span class="dot" style="background:#BA7517"></span>GSC</span></div>
+    <div class="rsub"><span>6,621 non-brand clicks</span><span class="base">6,192 median · 107%</span></div>
+  </div>
+  <div class="st ok">OK</div>
+</div>
+
+<div class="row">
+  <div class="rnum">7</div>
+  <div>
+    <div class="rtop"><span class="rname">Engagement rate</span><span class="src"><span class="dot" style="background:#378ADD"></span>GA4</span></div>
+    <div class="rsub"><span>58.3% engaged</span><span class="base">44.6% median · 131%</span></div>
+  </div>
+  <div class="st ok">OK</div>
+</div>
+
+<div class="row fire">
+  <div class="rnum">8</div>
+  <div>
+    <div class="rtop"><span class="rname">Channel mix shift</span><span class="src"><span class="dot" style="background:#378ADD"></span>GA4</span></div>
+    <div class="rsub"><span>biggest: Cross-network −24.3pp</span><span class="base">threshold ±10pp vs median share</span></div>
+  </div>
+  <div class="st fire">Firing</div>
+</div>
+
+<div class="row">
+  <div class="rnum">9</div>
+  <div>
+    <div class="rtop"><span class="rname">Landing-page signup conversion</span><span class="src"><span class="dot" style="background:#378ADD"></span>GA4</span></div>
+    <div class="rsub"><span>top LP: /ai-presentation-maker</span><span class="base">no top-5 page dropped &gt;25%</span></div>
+  </div>
+  <div class="st ok">OK</div>
+</div>
+
+<div class="tier">P3 — daily digest · 1 firing</div>
+
+<div class="row">
+  <div class="rnum">10</div>
+  <div>
+    <div class="rtop"><span class="rname">Search visibility (clicks · position · impressions)</span><span class="src"><span class="dot" style="background:#BA7517"></span>GSC</span></div>
+    <div class="rsub"><span>top: 'presentation ai' 1,171 clk @ pos 1.7</span><span class="base">444,422 impr · 102% · no regression</span></div>
+  </div>
+  <div class="st ok">OK</div>
+</div>
+
+<div class="row fire">
+  <div class="rnum">11</div>
+  <div>
+    <div class="rtop"><span class="rname">Audience mix (mobile + new users)</span><span class="src"><span class="dot" style="background:#378ADD"></span>GA4</span></div>
+    <div class="rsub"><span>mobile 42.3% · new 77.6%</span><span class="base">median mobile 68.0% · Δ −25.7pp</span></div>
+  </div>
+  <div class="st fire">Firing</div>
+</div>
+
+<div class="row">
+  <div class="rnum">12</div>
+  <div>
+    <div class="rtop"><span class="rname">Campaign delivery</span><span class="src"><span class="dot" style="background:#378ADD"></span>GA4</span></div>
+    <div class="rsub"><span>102 active campaigns</span><span class="base">none dropped to 0</span></div>
+  </div>
+  <div class="st ok">OK</div>
+</div>
+
+<footer>
+Generated for 2026-06-17 (IST · D-2). Baseline = trailing-7-day median (2026-06-10 … 2026-06-16).
+Sources: GA4 (clean host www+app), Search Console (sc-domain), ClickHouse (user_account_finish + doc_create_new_finish).
+Every value cross-checked against raw sources; table↔HTML delivery validation: PASS.
+</footer>
+
+</div>
+</body>
+</html>
