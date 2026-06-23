@@ -1,0 +1,532 @@
+<!doctype html><html><head><meta charset="utf-8">
+<title>Daily revenue &amp; product-health alerts — 2026-06-22 (IST, D-1)</title>
+<style>
+:root { --bg:#0f1419; --panel:#1a1f26; --border:#2d343d;
+        --text:#e6e9ef; --muted:#9aa3ad; --good:#4ade80; --warn:#fbbf24; --bad:#f87171;
+        --p1:#ef4444; --p2:#fb923c; --p3:#fbbf24; --p4:#38bdf8;
+        --catv:#60a5fa; --catfr:#a78bfa; --catsp:#f87171; --catpt:#4ade80;
+        --catpd:#fbbf24; --catpv:#60a5fa; --catnew:#ef4444; }
+* { box-sizing:border-box }
+body { margin:0;padding:32px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Inter,sans-serif;
+       background:var(--bg);color:var(--text);line-height:1.55; }
+.wrap { max-width:1280px;margin:0 auto }
+h1 { font-size:26px;margin:0 0 4px;font-weight:600 }
+h2 { font-size:18px;margin:32px 0 8px;padding-bottom:6px;border-bottom:1px solid var(--border);color:#bfdbfe }
+.sub { color:var(--muted);font-size:13px;margin-bottom:14px }
+.kpis { display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin:14px 0 22px }
+.kpi { background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:13px 16px }
+.kpi .l { font-size:11px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted) }
+.kpi .v { font-size:22px;font-weight:600;margin-top:3px }
+.kpi .s { font-size:11.5px;color:var(--muted);margin-top:2px }
+.alert { background:var(--panel);border:1px solid var(--border);border-left:5px solid var(--p3);
+         border-radius:0 10px 10px 0;padding:14px 18px;margin:12px 0 }
+.alert.p1 { border-left-color:var(--p1) }
+.alert.p2 { border-left-color:var(--p2) }
+.alert.p3 { border-left-color:var(--p3) }
+.alert.p4 { border-left-color:var(--p4) }
+.alert .head { display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:8px }
+.alert .aid { color:var(--muted);font-family:ui-monospace,Menlo,monospace;font-size:11px }
+.alert .name { font-weight:600;font-size:15px;flex:1 }
+.badge { display:inline-block;padding:2px 9px;border-radius:11px;font-size:10.5px;font-weight:600;letter-spacing:.04em }
+.badge.p1 { background:var(--p1);color:#fff }
+.badge.p2 { background:var(--p2);color:#0f1419 }
+.badge.p3 { background:var(--p3);color:#0f1419 }
+.badge.p4 { background:var(--p4);color:#0f1419 }
+.cat { display:inline-block;padding:1px 8px;border-radius:10px;font-size:10px;font-weight:500;letter-spacing:.04em }
+.cat.v { background:rgba(96,165,250,.18);color:var(--catv) }
+.cat.fr { background:rgba(167,139,250,.18);color:var(--catfr) }
+.cat.sp { background:rgba(248,113,113,.18);color:var(--catsp) }
+.cat.pt { background:rgba(74,222,128,.18);color:var(--catpt) }
+.cat.pd { background:rgba(251,191,36,.18);color:var(--catpd) }
+.cat.pv { background:rgba(96,165,250,.18);color:var(--catpv) }
+.cat.new { background:rgba(239,68,68,.18);color:var(--catnew) }
+.status { display:inline-block;padding:2px 9px;border-radius:11px;font-size:10.5px;font-weight:700;letter-spacing:.04em }
+.status.bad { background:var(--bad);color:#0f1419 }
+.status.good { background:rgba(74,222,128,.18);color:var(--good);border:1px solid rgba(74,222,128,.4) }
+.status.muted { background:rgba(154,163,173,.15);color:var(--muted);border:1px solid var(--border) }
+.body { font-size:12.5px }
+.kv { display:grid;grid-template-columns:120px 1fr;gap:8px;margin:5px 0;padding:3px 0 }
+.kv.live { background:rgba(96,165,250,.06);border-radius:5px;padding:4px 6px;margin:2px -6px }
+.kv .k { color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.04em }
+.kv .v { color:var(--text) }
+.muted2 { color:var(--muted);font-size:11px }
+.thresh { background:rgba(251,191,36,.06);border:1px solid rgba(251,191,36,.25);padding:4px 8px;border-radius:4px;font-family:ui-monospace,Menlo,monospace;font-size:11.5px }
+details { margin-top:8px }
+details summary { cursor:pointer;color:var(--muted);font-size:12px;padding:4px 0 }
+details pre { background:#0a0c12;border:1px solid var(--border);border-radius:6px;padding:10px 14px;
+              font-size:11.5px;color:var(--text);overflow-x:auto;margin:6px 0;white-space:pre-wrap }
+code { background:#0a0c12;border:1px solid var(--border);padding:1px 5px;border-radius:3px;font-size:11.5px }
+.legend { background:var(--panel);border:1px solid var(--border);border-radius:8px;padding:12px 16px;font-size:12.5px;margin:14px 0 22px;color:var(--muted) }
+.legend strong { color:var(--text) }
+nav.toc { background:var(--panel);border:1px solid var(--border);border-radius:8px;padding:12px 16px;font-size:13px;margin:14px 0 22px }
+nav.toc a { color:#bfdbfe;text-decoration:none;display:inline-block;margin:2px 12px 2px 0 }
+footer { color:var(--muted);font-size:11.5px;margin-top:30px;padding-top:12px;border-top:1px solid var(--border) }
+</style></head><body><div class="wrap">
+
+<h1>Daily revenue &amp; product-health alerts — 2026-06-22 <span style="color:var(--muted);font-size:15px">(IST · D-1)</span></h1>
+<p class="sub">
+Live run against the previous day <strong>2026-06-22</strong>; baseline = trailing-7-day median (2026-06-15 … 2026-06-21).
+19 alerts (12 revenue · 7 product-health) ·
+<strong style="color:var(--bad)">3 firing</strong> · 0 info.
+</p>
+
+<div class="kpis">
+  <div class="kpi" style='border-left:4px solid var(--bad)'><div class="l">Firing today</div>
+    <div class="v" style="color:var(--bad)">3</div><p class="s">breached threshold</p></div>
+  <div class="kpi" style='border-left:4px solid var(--p1)'><div class="l">P1 — Page</div>
+    <div class="v">5</div><p class="s">Page on-call alerts</p></div>
+  <div class="kpi" style='border-left:4px solid var(--p2)'><div class="l">P2 — Slack daily</div>
+    <div class="v">5</div><p class="s">Slack daily alerts · 1 firing</p></div>
+  <div class="kpi" style='border-left:4px solid var(--p3)'><div class="l">P3 — Leading</div>
+    <div class="v">2</div><p class="s">Leading / churn alerts</p></div>
+  <div class="kpi" style='border-left:4px solid var(--p4)'><div class="l">P4 — Product</div>
+    <div class="v">7</div><p class="s">Product &amp; funnel health · 2 firing</p></div>
+</div>
+
+<nav class="toc">
+<strong>Jump to:</strong>
+<a href="#p1">P1 — Page on-call alerts</a>
+<a href="#p2">P2 — Slack daily alerts</a>
+<a href="#p3">P3 — Leading / churn alerts</a>
+<a href="#p4">P4 — Product &amp; funnel health</a>
+</nav>
+
+<div class="legend">
+<strong>How to read this:</strong> each card keeps the plan (Metric / Threshold / Why / Owner / Frequency) and adds the
+live <em>Yesterday (D-1)</em> value, its <em>Baseline / Δ</em> (vs the trailing-7-day median), and a <em>Status</em>.
+Revenue alerts (R1–R12) come from MySQL <code>is_stripepayments</code> + <code>is_subscription_renewals</code>, USD-normalized via the
+canonical FX table. Product-health alerts (E1–E7) come from ClickHouse <code>events_db.eventcollection</code> — the leading &amp;
+quality signals revenue data can't see. Refunds/chargebacks are not yet trackable (no status field).
+</div>
+
+<h2 id="p1">P1 — Page on-call alerts (5)</h2>
+<p class="sub">Wake someone up. Revenue actively at risk if uninvestigated for more than 2 hours.</p>
+<div class="alert p1">
+  <div class="head">
+    <span class="aid">R1</span>
+    <span class='badge p1'>P1 — Page</span>
+    <span class='cat pt'>Revenue</span>
+    <span class="name">Gross revenue (USD)</span>
+    <span class='status good'>OK</span>
+  </div>
+  <div class="body">
+    <div class="kv"><div class="k">Metric</div><div class="v"><code>SUM(amount→USD) over is_stripepayments</code></div></div>
+    <div class="kv"><div class="k">Dimension</div><div class="v">IST day</div></div>
+    <div class="kv"><div class="k">Threshold</div><div class="v thresh">Yesterday &lt; 70% of trailing 7-day median</div></div>
+    <div class="kv"><div class="k">Why</div><div class="v">The headline. A sharp drop = gateway outage, billing failure, pricing-page regression, or a tracking/webhook break.</div></div>
+    <div class="kv"><div class="k">Owner</div><div class="v">revenue on-call</div></div>
+    <div class="kv"><div class="k">Frequency</div><div class="v">Daily 10:00 IST</div></div>
+    <div class="kv live"><div class="k">Yesterday (D-1)</div><div class="v"><strong>$6,538 gross</strong></div></div>
+    <div class="kv live"><div class="k">Baseline / Δ</div><div class="v">$7,585 (7d med) · 86%</div></div>
+    <div class="kv live"><div class="k">Status</div><div class="v"><span class="status good">OK</span> <span class="muted2">USD-normalized is_stripepayments</span></div></div>
+    <details><summary>Query shape</summary>
+    <pre>SELECT day, SUM(FX→USD) FROM is_stripepayments GROUP BY IST day</pre></details>
+  </div>
+</div>
+<div class="alert p1">
+  <div class="head">
+    <span class="aid">R2</span>
+    <span class='badge p1'>P1 — Page</span>
+    <span class='cat v'>Volume</span>
+    <span class="name">Paying users</span>
+    <span class='status good'>OK</span>
+  </div>
+  <div class="body">
+    <div class="kv"><div class="k">Metric</div><div class="v"><code>COUNT(DISTINCT userid)</code></div></div>
+    <div class="kv"><div class="k">Dimension</div><div class="v">IST day</div></div>
+    <div class="kv"><div class="k">Threshold</div><div class="v thresh">&lt; 70% of 7-day median</div></div>
+    <div class="kv"><div class="k">Why</div><div class="v">Decouples 'fewer buyers' from 'smaller tickets'. A volume drop with steady ARPU points at acquisition/checkout, not pricing.</div></div>
+    <div class="kv"><div class="k">Owner</div><div class="v">revenue on-call</div></div>
+    <div class="kv"><div class="k">Frequency</div><div class="v">Daily</div></div>
+    <div class="kv live"><div class="k">Yesterday (D-1)</div><div class="v"><strong>80 paying users</strong></div></div>
+    <div class="kv live"><div class="k">Baseline / Δ</div><div class="v">89 (7d med) · 90%</div></div>
+    <div class="kv live"><div class="k">Status</div><div class="v"><span class="status good">OK</span> <span class="muted2"></span></div></div>
+    <details><summary>Query shape</summary>
+    <pre>SELECT day, COUNT(DISTINCT userid) FROM is_stripepayments GROUP BY IST day</pre></details>
+  </div>
+</div>
+<div class="alert p1">
+  <div class="head">
+    <span class="aid">R3</span>
+    <span class='badge p1'>P1 — Page</span>
+    <span class='cat pt'>Revenue</span>
+    <span class="name">New-business revenue (first-ever payers)</span>
+    <span class='status good'>OK</span>
+  </div>
+  <div class="body">
+    <div class="kv"><div class="k">Metric</div><div class="v"><code>SUM(USD) where user's first-ever payment is today</code></div></div>
+    <div class="kv"><div class="k">Dimension</div><div class="v">IST day</div></div>
+    <div class="kv"><div class="k">Threshold</div><div class="v thresh">&lt; 70% of 7-day median</div></div>
+    <div class="kv"><div class="k">Why</div><div class="v">The growth engine — net-new customers, not renewals. The most direct read on whether acquisition is converting to money.</div></div>
+    <div class="kv"><div class="k">Owner</div><div class="v">growth + revenue</div></div>
+    <div class="kv"><div class="k">Frequency</div><div class="v">Daily</div></div>
+    <div class="kv live"><div class="k">Yesterday (D-1)</div><div class="v"><strong>$5,020 new-biz (63 payers)</strong></div></div>
+    <div class="kv live"><div class="k">Baseline / Δ</div><div class="v">$5,143 (7d med) · 98%</div></div>
+    <div class="kv live"><div class="k">Status</div><div class="v"><span class="status good">OK</span> <span class="muted2">user's first-ever payment is today</span></div></div>
+    <details><summary>Query shape</summary>
+    <pre>JOIN MIN(createdon) per userid; bucket where first-pay IST day = pay IST day</pre></details>
+  </div>
+</div>
+<div class="alert p1">
+  <div class="head">
+    <span class="aid">R4</span>
+    <span class='badge p1'>P1 — Page</span>
+    <span class='cat fr'>Renewals</span>
+    <span class="name">Renewal count (all gateways)</span>
+    <span class='status good'>OK</span>
+  </div>
+  <div class="body">
+    <div class="kv"><div class="k">Metric</div><div class="v"><code>COUNT(*) is_subscription_renewals type='renewal'</code></div></div>
+    <div class="kv"><div class="k">Dimension</div><div class="v">IST day</div></div>
+    <div class="kv"><div class="k">Threshold</div><div class="v thresh">&lt; 70% of 7-day median</div></div>
+    <div class="kv"><div class="k">Why</div><div class="v">Renewals are the recurring base. A drop = involuntary churn (card failures, dunning) or a billing-cron problem before it shows in MRR.</div></div>
+    <div class="kv"><div class="k">Owner</div><div class="v">revenue on-call</div></div>
+    <div class="kv"><div class="k">Frequency</div><div class="v">Daily</div></div>
+    <div class="kv live"><div class="k">Yesterday (D-1)</div><div class="v"><strong>17 renewals</strong></div></div>
+    <div class="kv live"><div class="k">Baseline / Δ</div><div class="v">24 (7d med) · 71%</div></div>
+    <div class="kv live"><div class="k">Status</div><div class="v"><span class="status good">OK</span> <span class="muted2">is_subscription_renewals type='renewal'</span></div></div>
+    <details><summary>Query shape</summary>
+    <pre>SELECT day, COUNT(*) FROM is_subscription_renewals WHERE type='renewal' GROUP BY IST day</pre></details>
+  </div>
+</div>
+<div class="alert p1">
+  <div class="head">
+    <span class="aid">R5</span>
+    <span class='badge p1'>P1 — Page</span>
+    <span class='cat sp'>Spike</span>
+    <span class="name">Payment-failure spike</span>
+    <span class='status good'>OK</span>
+  </div>
+  <div class="body">
+    <div class="kv"><div class="k">Metric</div><div class="v"><code>countIf(payment_flow_end status='failure')</code></div></div>
+    <div class="kv"><div class="k">Dimension</div><div class="v">IST day</div></div>
+    <div class="kv"><div class="k">Threshold</div><div class="v thresh">&gt; 150% of 7-day median</div></div>
+    <div class="kv"><div class="k">Why</div><div class="v">Leading signal from the event stream — 3DS friction, payment-method outage, or a Stripe webhook problem before lost revenue lands in MySQL.</div></div>
+    <div class="kv"><div class="k">Owner</div><div class="v">payments-ops</div></div>
+    <div class="kv"><div class="k">Frequency</div><div class="v">Daily</div></div>
+    <div class="kv live"><div class="k">Yesterday (D-1)</div><div class="v"><strong>67 payment failures</strong></div></div>
+    <div class="kv live"><div class="k">Baseline / Δ</div><div class="v">72 (7d med) · 93%</div></div>
+    <div class="kv live"><div class="k">Status</div><div class="v"><span class="status good">OK</span> <span class="muted2">CH payment_flow_end failure; ratio vs own median cancels undercount</span></div></div>
+    <details><summary>Query shape</summary>
+    <pre>SELECT day, countIf(event='payment_flow_end' AND status='failure') FROM eventcollection GROUP BY IST day</pre></details>
+  </div>
+</div><h2 id="p2">P2 — Slack daily alerts (5) · <span style="color:var(--bad)">1 firing</span></h2>
+<p class="sub">Revenue composition &amp; efficiency. Acted on within 24h.</p>
+<div class="alert p2">
+  <div class="head">
+    <span class="aid">R6</span>
+    <span class='badge p2'>P2 — Slack daily</span>
+    <span class='cat fr'>Efficiency</span>
+    <span class="name">ARPU (USD per paying user)</span>
+    <span class='status good'>OK</span>
+  </div>
+  <div class="body">
+    <div class="kv"><div class="k">Metric</div><div class="v"><code>gross USD / paying users</code></div></div>
+    <div class="kv"><div class="k">Dimension</div><div class="v">IST day</div></div>
+    <div class="kv"><div class="k">Threshold</div><div class="v thresh">Drops &gt; 20% vs 7-day median</div></div>
+    <div class="kv"><div class="k">Why</div><div class="v">Ticket size. A drop with steady volume = discount-heavy mix, plan downshift, or FX/region mix moving toward cheaper markets.</div></div>
+    <div class="kv"><div class="k">Owner</div><div class="v">revenue</div></div>
+    <div class="kv"><div class="k">Frequency</div><div class="v">Daily</div></div>
+    <div class="kv live"><div class="k">Yesterday (D-1)</div><div class="v"><strong>$82/payer ARPU</strong></div></div>
+    <div class="kv live"><div class="k">Baseline / Δ</div><div class="v">$85 (7d med) · 96%</div></div>
+    <div class="kv live"><div class="k">Status</div><div class="v"><span class="status good">OK</span> <span class="muted2"></span></div></div>
+    <details><summary>Query shape</summary>
+    <pre>gross_usd / COUNT(DISTINCT userid) per IST day</pre></details>
+  </div>
+</div>
+<div class="alert p2">
+  <div class="head">
+    <span class="aid">R7</span>
+    <span class='badge p2'>P2 — Slack daily</span>
+    <span class='cat pv'>Geo</span>
+    <span class="name">T1-market revenue</span>
+    <span class='status good'>OK</span>
+  </div>
+  <div class="body">
+    <div class="kv"><div class="k">Metric</div><div class="v"><code>SUM(USD) where is_profile.country IN T1</code></div></div>
+    <div class="kv"><div class="k">Dimension</div><div class="v">IST day · country</div></div>
+    <div class="kv"><div class="k">Threshold</div><div class="v thresh">&lt; 75% of 7-day median</div></div>
+    <div class="kv"><div class="k">Why</div><div class="v">T1 = highest-ARPU markets. A geo-weighted revenue drop usually signals a regional payment-provider or pricing issue.</div></div>
+    <div class="kv"><div class="k">Owner</div><div class="v">revenue + growth</div></div>
+    <div class="kv"><div class="k">Frequency</div><div class="v">Daily</div></div>
+    <div class="kv live"><div class="k">Yesterday (D-1)</div><div class="v"><strong>$3,263 T1 revenue</strong></div></div>
+    <div class="kv live"><div class="k">Baseline / Δ</div><div class="v">$3,436 (7d med) · 95%</div></div>
+    <div class="kv live"><div class="k">Status</div><div class="v"><span class="status good">OK</span> <span class="muted2">high-ARPU markets (30 README countries)</span></div></div>
+    <details><summary>Query shape</summary>
+    <pre>is_stripepayments JOIN is_profile ON user_id; filter country IN T1; SUM(USD) per day</pre></details>
+  </div>
+</div>
+<div class="alert p2">
+  <div class="head">
+    <span class="aid">R8</span>
+    <span class='badge p2'>P2 — Slack daily</span>
+    <span class='cat pd'>Gateway</span>
+    <span class="name">Gateway health</span>
+    <span class='status bad'>FIRING</span>
+  </div>
+  <div class="body">
+    <div class="kv"><div class="k">Metric</div><div class="v"><code>SUM(USD) per gateway</code></div></div>
+    <div class="kv"><div class="k">Dimension</div><div class="v">IST day · gateway</div></div>
+    <div class="kv"><div class="k">Threshold</div><div class="v thresh">Any gateway (7d med ≥ $300) &lt; 50% of its own median</div></div>
+    <div class="kv"><div class="k">Why</div><div class="v">Catches a single processor breaking (Stripe / Razorpay / Paddle / Apple / Google) while the others mask it in the total.</div></div>
+    <div class="kv"><div class="k">Owner</div><div class="v">payments-ops</div></div>
+    <div class="kv"><div class="k">Frequency</div><div class="v">Daily</div></div>
+    <div class="kv live"><div class="k">Yesterday (D-1)</div><div class="v"><strong>5 gateways · top STRIPE $3,502</strong></div></div>
+    <div class="kv live"><div class="k">Baseline / Δ</div><div class="v">each gateway vs its own 7d median</div></div>
+    <div class="kv live"><div class="k">Status</div><div class="v"><span class="status bad">FIRING</span> <span class="muted2">outage: RAZORPAY 46%</span></div></div>
+    <details><summary>Query shape</summary>
+    <pre>SELECT day, gateway, SUM(USD) FROM is_stripepayments GROUP BY day, gateway</pre></details>
+  </div>
+</div>
+<div class="alert p2">
+  <div class="head">
+    <span class="aid">R9</span>
+    <span class='badge p2'>P2 — Slack daily</span>
+    <span class='cat pd'>Mix</span>
+    <span class="name">Plan-mix shift</span>
+    <span class='status good'>OK</span>
+  </div>
+  <div class="body">
+    <div class="kv"><div class="k">Metric</div><div class="v"><code>revenue share per plan family</code></div></div>
+    <div class="kv"><div class="k">Dimension</div><div class="v">plan family</div></div>
+    <div class="kv"><div class="k">Threshold</div><div class="v thresh">Any family's revenue share moves &gt; 15pp vs 7-day median</div></div>
+    <div class="kv"><div class="k">Why</div><div class="v">Composition risk even when the total holds — e.g. Pro collapsing while Export spikes signals a pricing or funnel regression.</div></div>
+    <div class="kv"><div class="k">Owner</div><div class="v">revenue</div></div>
+    <div class="kv"><div class="k">Frequency</div><div class="v">Daily</div></div>
+    <div class="kv live"><div class="k">Yesterday (D-1)</div><div class="v"><strong>biggest: Gold</strong></div></div>
+    <div class="kv live"><div class="k">Baseline / Δ</div><div class="v">share ±15pp vs 7d median</div></div>
+    <div class="kv live"><div class="k">Status</div><div class="v"><span class="status good">OK</span> <span class="muted2">no plan family shifted &gt;15pp</span></div></div>
+    <details><summary>Query shape</summary>
+    <pre>share = family_usd / gross_usd per day; families: Pro/Education/Gold/Basic/Export/Credits/Order</pre></details>
+  </div>
+</div>
+<div class="alert p2">
+  <div class="head">
+    <span class="aid">R10</span>
+    <span class='badge p2'>P2 — Slack daily</span>
+    <span class='cat pt'>Revenue</span>
+    <span class="name">One-off revenue (Export + AI credits)</span>
+    <span class='status good'>OK</span>
+  </div>
+  <div class="body">
+    <div class="kv"><div class="k">Metric</div><div class="v"><code>SUM(USD) where item_name IN ('Document Export','GPT3 Credits')</code></div></div>
+    <div class="kv"><div class="k">Dimension</div><div class="v">IST day</div></div>
+    <div class="kv"><div class="k">Threshold</div><div class="v thresh">&lt; 70% of 7-day median</div></div>
+    <div class="kv"><div class="k">Why</div><div class="v">Non-subscription, transactional revenue. Reacts fast to export/credit pricing changes and paywall placement.</div></div>
+    <div class="kv"><div class="k">Owner</div><div class="v">revenue + product</div></div>
+    <div class="kv"><div class="k">Frequency</div><div class="v">Daily</div></div>
+    <div class="kv live"><div class="k">Yesterday (D-1)</div><div class="v"><strong>$407 one-off</strong></div></div>
+    <div class="kv live"><div class="k">Baseline / Δ</div><div class="v">$358 (7d med) · 114%</div></div>
+    <div class="kv live"><div class="k">Status</div><div class="v"><span class="status good">OK</span> <span class="muted2">Document Export + GPT3 Credits</span></div></div>
+    <details><summary>Query shape</summary>
+    <pre>SELECT day, SUM(USD) FROM is_stripepayments WHERE item_name IN ('Document Export','GPT3 Credits') GROUP BY day</pre></details>
+  </div>
+</div><h2 id="p3">P3 — Leading / churn alerts (2)</h2>
+<p class="sub">Forward-looking: acquisition efficiency and cancellation pressure.</p>
+<div class="alert p3">
+  <div class="head">
+    <span class="aid">R11</span>
+    <span class='badge p3'>P3 — Leading</span>
+    <span class='cat fr'>Leading</span>
+    <span class="name">New-customer conversion (new payers ÷ signups)</span>
+    <span class='status good'>OK</span>
+  </div>
+  <div class="body">
+    <div class="kv"><div class="k">Metric</div><div class="v"><code>new-business payers / CH signups</code></div></div>
+    <div class="kv"><div class="k">Dimension</div><div class="v">IST day</div></div>
+    <div class="kv"><div class="k">Threshold</div><div class="v thresh">&lt; 80% of 7-day median</div></div>
+    <div class="kv"><div class="k">Why</div><div class="v">Blended acquisition efficiency — how many of the day's signups turn into net-new paying customers. Leading indicator of new-business revenue.</div></div>
+    <div class="kv"><div class="k">Owner</div><div class="v">growth + revenue</div></div>
+    <div class="kv"><div class="k">Frequency</div><div class="v">Daily</div></div>
+    <div class="kv live"><div class="k">Yesterday (D-1)</div><div class="v"><strong>0.52% (63 new payers / 12,040 signups)</strong></div></div>
+    <div class="kv live"><div class="k">Baseline / Δ</div><div class="v">0.46% (7d med) · 114%</div></div>
+    <div class="kv live"><div class="k">Status</div><div class="v"><span class="status good">OK</span> <span class="muted2">blended new-customer acquisition efficiency</span></div></div>
+    <details><summary>Query shape</summary>
+    <pre>new_business_payers (MySQL) / signups (CH user_account_finish) per IST day</pre></details>
+  </div>
+</div>
+<div class="alert p3">
+  <div class="head">
+    <span class="aid">R12</span>
+    <span class='badge p3'>P3 — Leading</span>
+    <span class='cat sp'>Churn</span>
+    <span class="name">Cancellation spike</span>
+    <span class='status good'>OK</span>
+  </div>
+  <div class="body">
+    <div class="kv"><div class="k">Metric</div><div class="v"><code>COUNT(*) is_subscription_renewals type='cancellation'</code></div></div>
+    <div class="kv"><div class="k">Dimension</div><div class="v">IST day</div></div>
+    <div class="kv"><div class="k">Threshold</div><div class="v thresh">&gt; 150% of 7-day median</div></div>
+    <div class="kv"><div class="k">Why</div><div class="v">Voluntary-churn early warning. A spike = a pricing/product change, a failed renewal wave, or an exit-intent flow regression.</div></div>
+    <div class="kv"><div class="k">Owner</div><div class="v">retention + revenue</div></div>
+    <div class="kv"><div class="k">Frequency</div><div class="v">Daily</div></div>
+    <div class="kv live"><div class="k">Yesterday (D-1)</div><div class="v"><strong>20 cancellations</strong></div></div>
+    <div class="kv live"><div class="k">Baseline / Δ</div><div class="v">24 (7d med) · 83%</div></div>
+    <div class="kv live"><div class="k">Status</div><div class="v"><span class="status good">OK</span> <span class="muted2">is_subscription_renewals type='cancellation'</span></div></div>
+    <details><summary>Query shape</summary>
+    <pre>SELECT day, COUNT(*) FROM is_subscription_renewals WHERE type='cancellation' GROUP BY IST day</pre></details>
+  </div>
+</div><h2 id="p4">P4 — Product &amp; funnel health (7) · <span style="color:var(--bad)">2 firing</span></h2>
+<p class="sub">ClickHouse event funnel &amp; quality — leading indicators and product bugs revenue data can't see.</p>
+<div class="alert p4">
+  <div class="head">
+    <span class="aid">E1</span>
+    <span class='badge p4'>P4 — Product</span>
+    <span class='cat v'>Volume</span>
+    <span class="name">Signup volume (event funnel)</span>
+    <span class='status good'>OK</span>
+  </div>
+  <div class="body">
+    <div class="kv"><div class="k">Metric</div><div class="v"><code>uniqExact(userId) where event='user_account_finish'</code></div></div>
+    <div class="kv"><div class="k">Dimension</div><div class="v">IST day</div></div>
+    <div class="kv"><div class="k">Threshold</div><div class="v thresh">&lt; 80% of 7-day median</div></div>
+    <div class="kv"><div class="k">Why</div><div class="v">Top of the funnel. Money is a lagging indicator — a signup-volume drop is the earliest read that acquisition or the auth/tracking pipeline broke.</div></div>
+    <div class="kv"><div class="k">Owner</div><div class="v">growth</div></div>
+    <div class="kv"><div class="k">Frequency</div><div class="v">Daily</div></div>
+    <div class="kv live"><div class="k">Yesterday (D-1)</div><div class="v"><strong>12,040 signups</strong></div></div>
+    <div class="kv live"><div class="k">Baseline / Δ</div><div class="v">13,727 (7d med) · 88%</div></div>
+    <div class="kv live"><div class="k">Status</div><div class="v"><span class="status good">OK</span> <span class="muted2">CH user_account_finish — top of the funnel</span></div></div>
+    <details><summary>Query shape</summary>
+    <pre>SELECT day, uniqExact(userId) FROM eventcollection WHERE event='user_account_finish' GROUP BY IST day</pre></details>
+  </div>
+</div>
+<div class="alert p4">
+  <div class="head">
+    <span class="aid">E2</span>
+    <span class='badge p4'>P4 — Product</span>
+    <span class='cat fr'>Funnel rate</span>
+    <span class="name">Activation — signup → doc_create.end</span>
+    <span class='status good'>OK</span>
+  </div>
+  <div class="body">
+    <div class="kv"><div class="k">Metric</div><div class="v"><code>uniqExactIf(userId, doc_create.end) / uniqExactIf(userId, account_finish)</code></div></div>
+    <div class="kv"><div class="k">Dimension</div><div class="v">IST day</div></div>
+    <div class="kv"><div class="k">Threshold</div><div class="v thresh">&lt; 80% of 7-day median</div></div>
+    <div class="kv"><div class="k">Why</div><div class="v">First-value rate: did the signup actually build a deck? A drop points at onboarding/editor regressions before they ever reach billing.</div></div>
+    <div class="kv"><div class="k">Owner</div><div class="v">product + growth</div></div>
+    <div class="kv"><div class="k">Frequency</div><div class="v">Daily</div></div>
+    <div class="kv live"><div class="k">Yesterday (D-1)</div><div class="v"><strong>54.9% (6,606 finished a deck)</strong></div></div>
+    <div class="kv live"><div class="k">Baseline / Δ</div><div class="v">55.5% (7d med) · 99%</div></div>
+    <div class="kv live"><div class="k">Status</div><div class="v"><span class="status good">OK</span> <span class="muted2">share of signups completing a doc_create</span></div></div>
+    <details><summary>Query shape</summary>
+    <pre>uniqExactIf(userId, doc_create action='end') / uniqExactIf(userId, user_account_finish) per IST day</pre></details>
+  </div>
+</div>
+<div class="alert p4">
+  <div class="head">
+    <span class="aid">E3</span>
+    <span class='badge p4'>P4 — Product</span>
+    <span class='cat fr'>Funnel rate</span>
+    <span class="name">Paywall reach — doc_create.end → payment_flow_start</span>
+    <span class='status good'>OK</span>
+  </div>
+  <div class="body">
+    <div class="kv"><div class="k">Metric</div><div class="v"><code>uniqExactIf(userId, payment_flow_start) / uniqExactIf(userId, doc_create.end)</code></div></div>
+    <div class="kv"><div class="k">Dimension</div><div class="v">IST day</div></div>
+    <div class="kv"><div class="k">Threshold</div><div class="v thresh">&lt; 80% of 7-day median</div></div>
+    <div class="kv"><div class="k">Why</div><div class="v">Are deck-finishers reaching the paywall? A drop = paywall placement / upsell-trigger regression, upstream of any revenue change.</div></div>
+    <div class="kv"><div class="k">Owner</div><div class="v">product + monetization</div></div>
+    <div class="kv"><div class="k">Frequency</div><div class="v">Daily</div></div>
+    <div class="kv live"><div class="k">Yesterday (D-1)</div><div class="v"><strong>74.2% (4,899 reached paywall)</strong></div></div>
+    <div class="kv live"><div class="k">Baseline / Δ</div><div class="v">61.6% (7d med) · 120%</div></div>
+    <div class="kv live"><div class="k">Status</div><div class="v"><span class="status good">OK</span> <span class="muted2">deck-finishers who hit the paywall</span></div></div>
+    <details><summary>Query shape</summary>
+    <pre>uniqExactIf(userId, payment_flow_start) / uniqExactIf(userId, doc_create action='end') per IST day</pre></details>
+  </div>
+</div>
+<div class="alert p4">
+  <div class="head">
+    <span class="aid">E4</span>
+    <span class='badge p4'>P4 — Product</span>
+    <span class='cat fr'>Funnel rate</span>
+    <span class="name">Checkout — payment_flow_start → success</span>
+    <span class='status good'>OK</span>
+  </div>
+  <div class="body">
+    <div class="kv"><div class="k">Metric</div><div class="v"><code>uniqExactIf(userId, payment_flow_end success) / uniqExactIf(userId, payment_flow_start)</code></div></div>
+    <div class="kv"><div class="k">Dimension</div><div class="v">IST day</div></div>
+    <div class="kv"><div class="k">Threshold</div><div class="v thresh">&lt; 70% of 7-day median</div></div>
+    <div class="kv"><div class="k">Why</div><div class="v">Event-side checkout close rate. CH undercounts vs MySQL so read the trend, not the absolute — a sharp relative drop flags 3DS/payment friction early.</div></div>
+    <div class="kv"><div class="k">Owner</div><div class="v">payments-ops</div></div>
+    <div class="kv"><div class="k">Frequency</div><div class="v">Daily</div></div>
+    <div class="kv live"><div class="k">Yesterday (D-1)</div><div class="v"><strong>1.29% (63/4,899)</strong></div></div>
+    <div class="kv live"><div class="k">Baseline / Δ</div><div class="v">1.50% (7d med) · 86%</div></div>
+    <div class="kv live"><div class="k">Status</div><div class="v"><span class="status good">OK</span> <span class="muted2">CH event-funnel close rate (undercounts vs MySQL — read as trend)</span></div></div>
+    <details><summary>Query shape</summary>
+    <pre>uniqExactIf(userId, payment_flow_end success) / uniqExactIf(userId, payment_flow_start) per IST day</pre></details>
+  </div>
+</div>
+<div class="alert p4">
+  <div class="head">
+    <span class="aid">E5</span>
+    <span class='badge p4'>P4 — Product</span>
+    <span class='cat sp'>Quality</span>
+    <span class="name">Phantom editor loads</span>
+    <span class='status bad'>FIRING</span>
+  </div>
+  <div class="body">
+    <div class="kv"><div class="k">Metric</div><div class="v"><code>editor_load docIds with no doc_create.end</code></div></div>
+    <div class="kv"><div class="k">Dimension</div><div class="v">IST day</div></div>
+    <div class="kv"><div class="k">Threshold</div><div class="v thresh">&gt; 100 on the day</div></div>
+    <div class="kv"><div class="k">Why</div><div class="v">Editor opened but the deck never finished generating — generation-service hangs. Pure product-health; invisible to revenue. Was firing (2,425) on 2026-06-18.</div></div>
+    <div class="kv"><div class="k">Owner</div><div class="v">platform / gen-service</div></div>
+    <div class="kv"><div class="k">Frequency</div><div class="v">Daily</div></div>
+    <div class="kv live"><div class="k">Yesterday (D-1)</div><div class="v"><strong>2,158 phantom docs</strong></div></div>
+    <div class="kv live"><div class="k">Baseline / Δ</div><div class="v">editor_load with no doc_create.end</div></div>
+    <div class="kv live"><div class="k">Status</div><div class="v"><span class="status bad">FIRING</span> <span class="muted2">investigate generation-service hangs</span></div></div>
+    <details><summary>Query shape</summary>
+    <pre>editor_load docIds LEFT JOIN doc_create.end docIds (target-1..target); count unmatched</pre></details>
+  </div>
+</div>
+<div class="alert p4">
+  <div class="head">
+    <span class="aid">E6</span>
+    <span class='badge p4'>P4 — Product</span>
+    <span class='cat sp'>Quality</span>
+    <span class="name">Silent upload failures</span>
+    <span class='status bad'>FIRING</span>
+  </div>
+  <div class="body">
+    <div class="kv"><div class="k">Metric</div><div class="v"><code>attachment_init users with no attachment_complete/failed</code></div></div>
+    <div class="kv"><div class="k">Dimension</div><div class="v">IST day</div></div>
+    <div class="kv"><div class="k">Threshold</div><div class="v thresh">&gt; 50 on the day</div></div>
+    <div class="kv"><div class="k">Why</div><div class="v">Upload started but never resolved either way — a silent timeout the failed-event path doesn't even catch. Was firing (411) on 2026-06-18.</div></div>
+    <div class="kv"><div class="k">Owner</div><div class="v">platform / uploads</div></div>
+    <div class="kv"><div class="k">Frequency</div><div class="v">Daily</div></div>
+    <div class="kv live"><div class="k">Yesterday (D-1)</div><div class="v"><strong>266 silent upload failures</strong></div></div>
+    <div class="kv live"><div class="k">Baseline / Δ</div><div class="v">attachment_init with no complete/failed</div></div>
+    <div class="kv live"><div class="k">Status</div><div class="v"><span class="status bad">FIRING</span> <span class="muted2">investigate upload timeouts</span></div></div>
+    <details><summary>Query shape</summary>
+    <pre>attachment_init users LEFT JOIN (attachment_complete|attachment_failed) users; count unmatched</pre></details>
+  </div>
+</div>
+<div class="alert p4">
+  <div class="head">
+    <span class="aid">E7</span>
+    <span class='badge p4'>P4 — Product</span>
+    <span class='cat pd'>Anomaly</span>
+    <span class="name">Tracking / schema drift</span>
+    <span class='status good'>OK</span>
+  </div>
+  <div class="body">
+    <div class="kv"><div class="k">Metric</div><div class="v"><code>new stepName / entryPointPage / event vs D-30…D-14</code></div></div>
+    <div class="kv"><div class="k">Dimension</div><div class="v">target day</div></div>
+    <div class="kv"><div class="k">Threshold</div><div class="v thresh">Any new entity above its user gate (step/page &gt;100u, event &gt;500u)</div></div>
+    <div class="kv"><div class="k">Why</div><div class="v">A new step/page/event that wasn't in the trailing baseline usually means a release changed instrumentation — it silently breaks every downstream funnel rate. Catch the schema change, not just its symptoms.</div></div>
+    <div class="kv"><div class="k">Owner</div><div class="v">data + product</div></div>
+    <div class="kv"><div class="k">Frequency</div><div class="v">Daily</div></div>
+    <div class="kv live"><div class="k">Yesterday (D-1)</div><div class="v"><strong>0 new entities</strong></div></div>
+    <div class="kv live"><div class="k">Baseline / Δ</div><div class="v">absent in D-30…D-14 baseline</div></div>
+    <div class="kv live"><div class="k">Status</div><div class="v"><span class="status good">OK</span> <span class="muted2">no new stepName/entryPointPage/event above gate</span></div></div>
+    <details><summary>Query shape</summary>
+    <pre>entity present on target day AND NOT IN (DISTINCT entity over D-30..D-14), grouped, HAVING users&gt;gate</pre></details>
+  </div>
+</div>
+
+<footer>
+Generated for 2026-06-22 (IST, D-1). Baseline = trailing-7-day median (2026-06-15 … 2026-06-21).
+Sources: MySQL <code>is_stripepayments</code> / <code>is_subscription_renewals</code> / <code>is_profile</code> (FX→USD, static/quarterly),
+ClickHouse <code>events_db.eventcollection</code>. Rendered in the event_alerts_daily_plan card format.
+</footer>
+
+</div></body></html>
