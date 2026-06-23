@@ -1,0 +1,32 @@
+<!doctype html><html><head><meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Renewal revenue · 2026-05-08 (IST)</title><style>:root{--bg:#0f1419;--panel:#1a1f26;--border:#2d343d;--text:#e6e9ef;--muted:#9aa3ad;
+--good:#4ade80;--warn:#fbbf24;--bad:#f87171;--blue:#60a5fa}
+*{box-sizing:border-box}
+body{margin:0;padding:32px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Inter,sans-serif;
+background:var(--bg);color:var(--text);line-height:1.55}
+.wrap{max-width:1000px;margin:0 auto}
+h1{font-size:24px;margin:0 0 6px;font-weight:600}
+h2{font-size:15px;margin:26px 0 4px;color:#bfdbfe}
+.note{color:var(--muted);font-size:12px;margin:6px 0}
+table{width:100%;border-collapse:collapse;font-size:12.5px;background:var(--panel);
+border:1px solid var(--border);border-radius:8px;overflow:hidden;margin:6px 0 4px}
+th,td{padding:7px 12px;border-bottom:1px solid var(--border);text-align:left;white-space:pre}
+th{background:#202733;color:var(--muted);font-weight:600;font-size:10.5px;text-transform:uppercase;letter-spacing:.04em}
+tbody tr:last-child td{border-bottom:none}
+td:not(:first-child),th:not(:first-child){text-align:right}
+tr.total td{font-weight:700;background:rgba(96,165,250,.08)}
+pre{background:#0a0c12;border:1px solid var(--border);border-radius:6px;padding:10px 14px;font-size:11.5px;overflow-x:auto}
+footer{color:var(--muted);font-size:11px;margin-top:28px;padding-top:12px;border-top:1px solid var(--border)}</style></head><body><div class="wrap">
+<h1>Renewal revenue · 2026-05-08 (IST)</h1>
+<p class='note'>True renewals from is_subscription_renewals (type=&#x27;renewal&#x27;); revenue = each renewing account&#x27;s actual is_stripepayments charge that day, FX→USD.</p>
+<h2>Headline</h2>
+<table><thead><tr><th>Metric</th><th>Value</th></tr></thead><tbody><tr><td>Renewal revenue (USD)</td><td>$2,732.04</td></tr><tr><td>Renewing accounts</td><td>22</td></tr><tr><td>Renewal transactions</td><td>22</td></tr></tbody></table>
+<h2>By plan</h2>
+<table><thead><tr><th>Plan</th><th>Txns</th><th>Revenue</th></tr></thead><tbody><tr><td>Pro</td><td>17</td><td>$2,366.08</td></tr><tr><td>Pro Education</td><td>4</td><td>$288.92</td></tr><tr><td>Pro Quarterly</td><td>1</td><td>$77.04</td></tr><tr class='total'><td>Total</td><td>22</td><td>$2,732.04</td></tr></tbody></table>
+<h2>Method comparison</h2>
+<table><thead><tr><th>Method</th><th>Txns</th><th>Revenue</th></tr></thead><tbody><tr><td>Renewal log -&gt; payments (canonical)</td><td>22</td><td>$2,732.04</td></tr><tr><td>is_stripepayments type subscription_renewal</td><td>4</td><td>$723.20</td></tr></tbody></table>
+<p class='note'>The subscription_renewal tag on is_stripepayments labels only 4 of the 22 actual renewals (rest are mislabeled type=subscription), so it undercounts renewal revenue. The renewal log is the reliable source. FX→USD is the static quarterly table (approximate, not accountant-grade). 2026-05-08 is a flagged payment-flow regime-change date.</p>
+<footer>Auto-generated from the Slack report (identical data). Source: MySQL is_subscription_renewals + is_stripepayments (FX→USD).</footer>
+</div></body></html>
