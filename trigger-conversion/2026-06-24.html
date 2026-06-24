@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Upgrade Trigger → Conversion (last 7 days)</title>
+<style>
+  :root{
+    --ink:#1a1a2e; --muted:#6b7280; --line:#e5e7eb; --bg:#f7f8fa; --card:#fff;
+    --blue:#2563eb; --blue-bg:#eff4ff; --gold:#b8860b; --gold-bg:#fdf6e3;
+    --green:#15803d; --green-bg:#ecfdf3; --red:#b91c1c;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    line-height:1.5;padding:32px 16px}
+  .wrap{max-width:880px;margin:0 auto}
+  h1{font-size:24px;margin:0 0 4px}
+  .sub{color:var(--muted);font-size:14px;margin:0 0 24px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;
+    padding:22px 24px;margin:0 0 24px;box-shadow:0 1px 2px rgba(0,0,0,.04)}
+  h2{font-size:17px;margin:0 0 2px}
+  .h2note{color:var(--muted);font-size:13px;margin:0 0 16px}
+  table{width:100%;border-collapse:collapse;font-size:14.5px}
+  th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line)}
+  th{font-size:12px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);font-weight:600}
+  td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
+  tr:last-child td{border-bottom:none}
+  .total td{font-weight:700;border-top:2px solid var(--ink);background:#fafbfc}
+  .badge{display:inline-block;font-size:11px;font-weight:700;padding:2px 8px;border-radius:999px;letter-spacing:.03em}
+  .pro{color:var(--blue);background:var(--blue-bg)}
+  .gold{color:var(--gold);background:var(--gold-bg)}
+  .emoji{font-size:15px;margin-right:6px}
+  .hl{color:var(--green);font-weight:700}
+  .bar{height:8px;border-radius:6px;background:var(--blue);display:inline-block;vertical-align:middle}
+  .takeaway{background:var(--green-bg);border:1px solid #bbf7d0;border-radius:10px;
+    padding:12px 16px;font-size:14.5px;margin-top:4px}
+  .notes{font-size:13px;color:#374151}
+  .notes li{margin:5px 0}
+  .flag{color:var(--red);font-weight:600}
+  footer{color:var(--muted);font-size:12px;margin-top:8px;text-align:center}
+  code{background:#f1f3f5;padding:1px 5px;border-radius:4px;font-size:12.5px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Upgrade-trigger funnel &amp; conversion</h1>
+  <p class="sub">presentations.ai &middot; <strong>last 7 days</strong> (IST), window ~2026-06-17 &rarr; 2026-06-24 &middot;
+  payments verified against MySQL <code>is_stripepayments</code>, counted only <strong>after</strong> the user saw the trigger.</p>
+
+  <!-- TABLE 1 -->
+  <div class="card">
+    <h2>1 &middot; The "Upgrade to Pro" modal — what people do, and who pays</h2>
+    <p class="h2note">Every distinct person who saw the upgrade modal at least once. Counts people, not pop-ups.</p>
+    <table>
+      <thead><tr><th>What happened</th><th class="num">People</th><th class="num">Share of all who saw it</th></tr></thead>
+      <tbody>
+        <tr><td><span class="emoji">👁️</span>Saw the modal</td><td class="num">12,535</td><td class="num">100%</td></tr>
+        <tr><td><span class="emoji">✅</span>Clicked "Upgrade to Pro"</td><td class="num">2,531</td><td class="num">20%</td></tr>
+        <tr><td><span class="emoji">❌</span>Closed it (the ✕)</td><td class="num">9,774</td><td class="num">78%</td></tr>
+        <tr><td><span class="emoji">🚪</span>Ignored it, just left</td><td class="num">230</td><td class="num">2%</td></tr>
+        <tr class="total"><td><span class="emoji">💰</span>Actually PAID (converted)</td><td class="num hl">123</td><td class="num hl">~1%</td></tr>
+      </tbody>
+    </table>
+    <div class="takeaway">
+      <strong>In one breath:</strong> ~12,500 people saw the upgrade modal last week. About 2,500 clicked Upgrade,
+      but only <strong>123 actually paid</strong> — roughly <strong>1 in 100</strong> of everyone who saw it.
+    </div>
+    <p class="h2note" style="margin-top:18px;margin-bottom:6px"><strong>What those 123 buyers bought</strong></p>
+    <table>
+      <thead><tr><th>Bought</th><th>Type</th><th class="num">Buyers</th></tr></thead>
+      <tbody>
+        <tr><td>Pro</td><td>subscription</td><td class="num">55</td></tr>
+        <tr><td>Basic</td><td>subscription</td><td class="num">25</td></tr>
+        <tr><td>Pro Education</td><td>subscription</td><td class="num">24</td></tr>
+        <tr><td>Document Export</td><td>one-off</td><td class="num">18</td></tr>
+        <tr><td>Gold</td><td>subscription</td><td class="num">2</td></tr>
+        <tr><td>Basic Student</td><td>subscription</td><td class="num">1</td></tr>
+        <tr><td>GPT3 Credits</td><td>one-off</td><td class="num">1</td></tr>
+        <tr class="total"><td>Total distinct buyers</td><td>107 subscriptions + 19 one-offs*</td><td class="num">123</td></tr>
+      </tbody>
+    </table>
+    <p class="h2note" style="margin-top:6px">*3 people bought more than one type, so the rows sum to 126 while distinct buyers = 123.</p>
+  </div>
+
+  <!-- TABLE 2 -->
+  <div class="card">
+    <h2>2 &middot; The 5 locked features in the Editor menu — clicks &amp; conversion</h2>
+    <p class="h2note">Free users who tapped a locked feature (and hit the "Upgrade to access" paywall), then who paid afterward.
+    Conversion is anchored to <em>when they clicked that specific feature</em>.</p>
+    <table>
+      <thead><tr><th>Locked feature</th><th>Plan</th><th class="num">👆 Clicked it</th><th class="num">💳 …then paid</th><th class="num">Rate</th></tr></thead>
+      <tbody>
+        <tr><td>Meet and edit</td><td><span class="badge pro">PRO</span></td><td class="num">172</td><td class="num">3</td><td class="num">1.7%</td></tr>
+        <tr><td>Refresh Data</td><td><span class="badge gold">GOLD</span></td><td class="num">171</td><td class="num">1</td><td class="num">0.6%</td></tr>
+        <tr><td>Analytics</td><td><span class="badge pro">PRO</span></td><td class="num">60</td><td class="num">3</td><td class="num">5.0%</td></tr>
+        <tr><td>Meet and present</td><td><span class="badge pro">PRO</span></td><td class="num">31</td><td class="num">1</td><td class="num">3.2%</td></tr>
+        <tr><td>Comments</td><td><span class="badge pro">PRO</span></td><td class="num">30</td><td class="num">0</td><td class="num">0%</td></tr>
+        <tr class="total"><td>Total (unique people)</td><td></td><td class="num">436</td><td class="num hl">8</td><td class="num">1.8%</td></tr>
+      </tbody>
+    </table>
+    <div class="takeaway">
+      <strong>In one breath:</strong> 436 people clicked one of these 5 locked features last week;
+      <strong>8 went on to pay</strong> (~2%). The 1 Gold-triggered buyer actually bought <em>Pro</em>, not Gold.
+    </div>
+  </div>
+
+  <!-- NOTES -->
+  <div class="card">
+    <h2>How the numbers were built &amp; what to trust</h2>
+    <ul class="notes">
+      <li><strong>Source of truth:</strong> "Paid" comes from MySQL <code>is_stripepayments</code> (every row is a real captured payment — no failed/refund rows), <em>not</em> the ClickHouse <code>payment_flow_end</code> event, which under-counts by ~30%.</li>
+      <li><strong>Join:</strong> ClickHouse <code>userId</code> → <code>is_users.id</code> → <code>is_stripepayments.userid</code> — direct numeric, no email/casting ambiguity.</li>
+      <li><strong>Attribution:</strong> a payment counts as a conversion only if it happened <strong>after</strong> the user saw the trigger. <strong>245</strong> people who saw the modal were <em>already paying</em> beforehand — correctly excluded from the 123.</li>
+      <li><strong>Click isn't required to convert:</strong> only 55 of the 123 buyers fired the "Upgrade to Pro" click event; the other 68 paid after seeing the modal without that click registering (known tab-navigation gap).</li>
+      <li class="flag">Don't rank the 5 features by their conversion rate — with only 8 buyers spread across them, each rate is just 0–3 people. The reliable figure is the total (~1–2%). Re-run over 30 days for trustworthy per-feature rates.</li>
+      <li><strong>"Paid" ≠ all subscriptions:</strong> some buyers purchased a one-off (Document Export / GPT3 Credits), not a plan.</li>
+    </ul>
+  </div>
+
+  <footer>Generated from a single consistent 7-day snapshot &middot; pai-analytics</footer>
+</div>
+</body>
+</html>
