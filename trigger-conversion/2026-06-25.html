@@ -117,44 +117,33 @@
 
   <!-- TABLE 3 -->
   <div class="card">
-    <h2>3 &middot; The "Invite new members" trigger &mdash; clicks &amp; conversion</h2>
-    <p class="h2note">Clicking <strong>Invite new members</strong> (the <span class="badge pro">PRO</span> item in the left sidebar)
-    pops the "Get 20% off Pro" upgrade modal. Counts distinct logged-in people; a payment counts only when it lands
-    <strong>after</strong> the click (verified in <code>is_stripepayments</code>).</p>
+    <h2>3 &middot; Individual upgrade triggers — Create project vs Invite new members</h2>
+    <p class="h2note">Two specific buttons that each pop the "Upgrade to Pro" modal, measured the
+    <strong>same way on the same 7-day window</strong>: saw the modal &rarr; clicked "Upgrade to Pro" &rarr; paid afterward
+    (a payment counts only if it lands <strong>after</strong> the click; verified in <code>is_stripepayments</code>).</p>
     <div class="tscroll"><table>
-      <thead><tr><th>What happened</th><th class="num">People</th><th class="num">Of prior step</th></tr></thead>
+      <thead><tr><th>Trigger</th><th class="num">👁️ Saw modal</th><th class="num">✅ Clicked Upgrade</th><th class="num">💰 Paid</th><th class="num">Click rate</th><th class="num">Conv.</th></tr></thead>
       <tbody>
-        <tr><td><span class="emoji">👆</span>Clicked "Invite new members" (sidebar)</td><td class="num">51</td><td class="num">100%</td></tr>
-        <tr><td><span class="emoji">✅</span>Clicked "Upgrade to Pro" &rarr; reached paywall</td><td class="num">42</td><td class="num">82%</td></tr>
-        <tr class="total"><td><span class="emoji">💰</span>Actually PAID (converted)</td><td class="num hl">1</td><td class="num hl">~2.4%</td></tr>
+        <tr><td><strong>Create project</strong> <span class="badge pro">PRO</span></td><td class="num">6,001</td><td class="num">841</td><td class="num hl">12</td><td class="num">14.0%</td><td class="num">1.4%</td></tr>
+        <tr><td><strong>Invite new members</strong> <span class="badge pro">PRO</span></td><td class="num">609</td><td class="num">42</td><td class="num hl">1</td><td class="num">6.9%</td><td class="num">2.4%</td></tr>
       </tbody>
     </table></div>
-    <p class="h2note" style="margin-top:18px;margin-bottom:6px"><strong>Where the 42 "Upgrade" clicks came from</strong> (entryPoint surface)</p>
+    <p class="h2note" style="margin-top:18px;margin-bottom:6px"><strong>What the converters bought</strong></p>
     <div class="tscroll"><table>
-      <thead><tr><th>Surface</th><th>Element</th><th class="num">Clickers</th></tr></thead>
+      <thead><tr><th>Trigger</th><th>Plans bought by converters</th><th class="num">Buyers</th></tr></thead>
       <tbody>
-        <tr><td>InviteUpgradeMembers</td><td>Upgrade to Team Plan</td><td class="num">30</td></tr>
-        <tr><td>InviteScreen</td><td>InviteButton</td><td class="num">6</td></tr>
-        <tr><td>SidePanel</td><td>InviteTeamMembers</td><td class="num">4</td></tr>
-        <tr><td>invite-collab</td><td>Invite your team</td><td class="num">2</td></tr>
-        <tr class="total"><td>Total (unique people)</td><td></td><td class="num">42</td></tr>
-      </tbody>
-    </table></div>
-    <p class="h2note" style="margin-top:18px;margin-bottom:6px"><strong>The 1 who paid</strong> (payment landed after the trigger click)</p>
-    <div class="tscroll"><table>
-      <thead><tr><th>Buyer</th><th>Plan</th><th>Type</th><th class="num">Amount</th><th>Paid</th></tr></thead>
-      <tbody>
-        <tr><td>Buyer A <span class="h2note">(anonymized)</span></td><td>Pro</td><td>subscription</td><td class="num">₹7,199 INR</td><td>Jun 19</td></tr>
+        <tr><td>Create project</td><td>Pro ×6, Pro Education ×4, Basic ×1, Document Export ×1</td><td class="num">12</td></tr>
+        <tr><td>Invite new members</td><td>Pro ×1</td><td class="num">1</td></tr>
       </tbody>
     </table></div>
     <div class="takeaway">
-      <strong>In one breath:</strong> 51 people opened the invite flow, 42 clicked Upgrade, and
-      <strong>1 paid</strong> (~2.4%). ClickHouse's own success event logged <strong>0</strong> here &mdash; the
-      conversion only surfaces via the MySQL payment cross-check.
+      <strong>In one breath:</strong> <strong>Create project</strong> is by far the bigger trigger — ~6,000 saw the modal,
+      841 clicked Upgrade, <strong>12 paid</strong> (1.4%). <strong>Invite new members</strong> is much smaller —
+      609 saw it, 42 clicked, <strong>1 paid</strong> (2.4%). Invite converts at a higher rate but on a tiny base.
     </div>
-    <p class="h2note" style="margin-top:14px"><span class="flag">Too thin to rank.</span> n=42 clickers / 1 buyer &mdash; directional only.
-    One other clicker bought Basic but <em>before</em> they hit this trigger, so they're a pre-existing payer, not a conversion.
-    Also: the UI button reads "Upgrade to Pro" but the dominant surface logs the element as <em>"Upgrade to Team Plan"</em> (inviting members is a team feature).</p>
+    <p class="h2note" style="margin-top:14px"><span class="flag">Read with care:</span> Invite's 1 buyer is too thin to rank against
+    Create project's 12 — the 2.4% vs 1.4% gap is not reliable at n=1. Both triggers are slices <em>inside</em> the
+    Section&nbsp;1 modal total, not separate audiences added on top.</p>
   </div>
 
   <!-- NOTES -->
