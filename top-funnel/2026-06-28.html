@@ -1,0 +1,36 @@
+<!doctype html><html><head><meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Top-of-funnel daily alerts — 2026-06-28 (IST · D-2)</title><style>:root{--bg:#0f1419;--panel:#1a1f26;--border:#2d343d;--text:#e6e9ef;--muted:#9aa3ad;
+--good:#4ade80;--warn:#fbbf24;--bad:#f87171;--blue:#60a5fa}
+*{box-sizing:border-box}
+body{margin:0;padding:32px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Inter,sans-serif;
+background:var(--bg);color:var(--text);line-height:1.55}
+.wrap{max-width:1000px;margin:0 auto}
+h1{font-size:24px;margin:0 0 6px;font-weight:600}
+h2{font-size:15px;margin:26px 0 4px;color:#bfdbfe}
+.note{color:var(--muted);font-size:12px;margin:6px 0}
+table{width:100%;border-collapse:collapse;font-size:12.5px;background:var(--panel);
+border:1px solid var(--border);border-radius:8px;overflow:hidden;margin:6px 0 4px}
+th,td{padding:7px 12px;border-bottom:1px solid var(--border);text-align:left;white-space:pre}
+th{background:#202733;color:var(--muted);font-weight:600;font-size:10.5px;text-transform:uppercase;letter-spacing:.04em}
+tbody tr:last-child td{border-bottom:none}
+td:not(:first-child),th:not(:first-child){text-align:right}
+tr.total td{font-weight:700;background:rgba(96,165,250,.08)}
+pre{background:#0a0c12;border:1px solid var(--border);border-radius:6px;padding:10px 14px;font-size:11.5px;overflow-x:auto}
+footer{color:var(--muted);font-size:11px;margin-top:28px;padding-top:12px;border-top:1px solid var(--border)}</style></head><body><div class="wrap">
+<h1>Top-of-funnel daily alerts — 2026-06-28 (IST · D-2)</h1>
+<p class='note'>48h-lagged day · baseline = trailing 7d (2026-06-21 … 2026-06-27) · GA4 + Search Console + ClickHouse.</p>
+<h2>Summary</h2>
+<table><thead><tr><th>Result</th><th>Count</th></tr></thead><tbody><tr><td>🔴 Firing</td><td>6</td></tr><tr><td>🟢 OK</td><td>5</td></tr><tr><td>🟡 Pending</td><td>1</td></tr><tr><td>⚪ Info</td><td>0</td></tr><tr class='total'><td>Total</td><td>12</td></tr></tbody></table>
+<h2>P1 — Page (on-call) (5 · 3 firing)</h2>
+<table><thead><tr><th>#</th><th>Alert</th><th>Status</th><th>Current (D-2)</th><th>Baseline · Δ</th></tr></thead><tbody><tr><td>#1</td><td>Total daily sessions</td><td>FIRING</td><td>19,723 sessions</td><td>26,776 (7d med) · 74%</td></tr><tr><td>#2</td><td>Daily signups (volume + rate)</td><td>FIRING</td><td>6,930 signups · 40.5% rate</td><td>10,503 (7d med) · 66% vol · rate …</td></tr><tr><td>#3</td><td>Activation — signup → first deck</td><td>OK</td><td>57.6% activated (3,995/6,930)</td><td>54.5% (7d med) · 106%</td></tr><tr><td>#4</td><td>T1 signup volume</td><td>FIRING</td><td>568 T1 signups</td><td>849 (7d med) · 67%</td></tr><tr><td>#5</td><td>Paid acquisition health</td><td>PENDING</td><td>1,422 paid sessions · spend n…</td><td>2,759 (7d med) · 52% · Ads OAuth …</td></tr></tbody></table>
+<h2>P2 — Slack daily (4 · 1 firing)</h2>
+<table><thead><tr><th>#</th><th>Alert</th><th>Status</th><th>Current (D-2)</th><th>Baseline · Δ</th></tr></thead><tbody><tr><td>#6</td><td>Non-branded organic clicks</td><td>OK</td><td>4,134 non-brand clicks</td><td>4,750 (7d med) · 87%</td></tr><tr><td>#7</td><td>Engagement rate</td><td>OK</td><td>55.9% engaged</td><td>58.5% (7d med) · 96%</td></tr><tr><td>#8</td><td>Channel mix shift</td><td>OK</td><td>biggest: Cross-network</td><td>±10pp vs 7d median share</td></tr><tr><td>#9</td><td>Landing-page signup conversion</td><td>FIRING</td><td>top LP: /ai-presentation-maker</td><td>GA4 GA_user_signup_register / ses…</td></tr></tbody></table>
+<h2>P3 — Daily digest (3 · 2 firing)</h2>
+<table><thead><tr><th>#</th><th>Alert</th><th>Status</th><th>Current (D-2)</th><th>Baseline · Δ</th></tr></thead><tbody><tr><td>#10</td><td>Search visibility (clicks · pos…</td><td>FIRING</td><td>top: &#x27;presentation ai&#x27; 681clk…</td><td>274,157 impr · 20 top queries · i…</td></tr><tr><td>#11</td><td>Audience mix (mobile + new user…</td><td>FIRING</td><td>mobile 30.2% · new 81.8%</td><td>med mobile 43.7% · new 78.4%</td></tr><tr><td>#12</td><td>Campaign delivery</td><td>OK</td><td>108 active campaigns</td><td>flag: active campaign (7d med &gt;50…</td></tr></tbody></table>
+<h2>🔴 Firing / pending — detail</h2>
+<table><thead><tr><th>#</th><th>Status</th><th>Finding / action</th></tr></thead><tbody><tr><td>#1</td><td>FIRING</td><td>top-line acquisition volume</td></tr><tr><td>#2</td><td>FIRING</td><td>rate at 104% of median · CH user_account_finish / GA4 users</td></tr><tr><td>#4</td><td>FIRING</td><td>GA4 GA_user_signup_register by country · T1 = high-ARPU mar…</td></tr><tr><td>#5</td><td>PENDING</td><td>restore: google_ads/bootstrap_refresh_token.py -&gt; secrets/g…</td></tr><tr><td>#9</td><td>FIRING</td><td>drop: /ai-presentation-maker 3.5%-&gt; (med 5.9%), /ai-present…</td></tr><tr><td>#10</td><td>FIRING</td><td>regress: presentations ai clicks 62%; ai presentation maker…</td></tr><tr><td>#11</td><td>FIRING</td><td>shift: mobile Δ-13.5pp</td></tr></tbody></table>
+<p class='note'>48h-lag permanent. #5 paid health (spend/CPS) needs Google Ads OAuth live.</p>
+<footer>Auto-generated from the Slack report (identical data).</footer>
+</div></body></html>
