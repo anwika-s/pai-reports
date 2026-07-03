@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="dark light">
+<title>7-Day Trial — Tier-1 Lifecycle Report (2026-06-04 → 07-03)</title>
+<style>
+  :root{
+    --bg:#0f1115; --card:#171a21; --card2:#1c2029; --ink:#e8eaed; --mut:#9aa3af;
+    --line:#2a2f3a; --accent:#5b8cff; --good:#37c98b; --warn:#f2b23a; --bad:#ef5f6b;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font:16px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    -webkit-font-smoothing:antialiased;overflow-wrap:break-word}
+  .wrap{max-width:960px;margin:0 auto;
+    padding:clamp(18px,4vw,32px) clamp(14px,4vw,22px) 72px;
+    padding-left:max(clamp(14px,4vw,22px),env(safe-area-inset-left));
+    padding-right:max(clamp(14px,4vw,22px),env(safe-area-inset-right))}
+  h1{font-size:clamp(21px,5.5vw,26px);margin:0 0 4px;letter-spacing:-.3px;line-height:1.2}
+  .sub{color:var(--mut);margin:0 0 10px;font-size:clamp(13px,3.5vw,15px)}
+  .tag{display:inline-block;font-size:12px;color:var(--mut);border:1px solid var(--line);
+    border-radius:999px;padding:3px 10px;margin:2px 6px 2px 0}
+  h2{font-size:clamp(16px,4.5vw,18px);margin:34px 0 12px;padding-bottom:8px;border-bottom:1px solid var(--line)}
+  h2 .n{color:var(--accent);font-weight:600;margin-right:8px}
+  p.note{color:var(--mut);font-size:clamp(12.5px,3.4vw,13.5px);background:var(--card2);
+    border-left:3px solid var(--accent);padding:10px 14px;border-radius:0 6px 6px 0;margin:14px 0}
+  p.warn{border-left-color:var(--warn)}
+  p.bad{border-left-color:var(--bad)}
+
+  /* KPI grid — auto-fits, 2-up on phones */
+  .kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:18px 0}
+  .kpi{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
+  .kpi .v{font-size:clamp(20px,6vw,26px);font-weight:700;letter-spacing:-.5px}
+  .kpi .l{color:var(--mut);font-size:12.5px;margin-top:2px}
+  .kpi .v.good{color:var(--good)} .kpi .v.bad{color:var(--bad)} .kpi .v.warn{color:var(--warn)}
+
+  /* Scrollable table wrapper so wide tables never break the layout */
+  .tbl{overflow-x:auto;-webkit-overflow-scrolling:touch;border-radius:10px;
+    border:1px solid var(--line);margin:6px 0 4px;background:var(--card);
+    overscroll-behavior-x:contain}
+  table{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
+  th,td{padding:9px 14px;text-align:right;border-bottom:1px solid var(--line);white-space:nowrap}
+  th:first-child,td:first-child{text-align:left;white-space:normal;min-width:9em}
+  thead th{background:var(--card2);color:var(--mut);font-weight:600;font-size:12px;
+    text-transform:uppercase;letter-spacing:.4px;position:sticky;top:0}
+  tbody tr:last-child td{border-bottom:none}
+  tbody tr:hover{background:#20242e}
+
+  /* Bars: percentage-based so they scale with the cell, never overflow */
+  .barcell{width:34%;min-width:70px}
+  .bar{height:8px;border-radius:4px;background:var(--accent);display:block;min-width:3px}
+  .muted{color:var(--mut)} .g{color:var(--good)} .b{color:var(--bad)} .w{color:var(--warn)}
+  .foot{color:var(--mut);font-size:12.5px;margin-top:40px;border-top:1px solid var(--line);padding-top:14px}
+  ul{margin:8px 0 8px 2px;padding-left:20px} li{margin:6px 0;font-size:clamp(13.5px,3.6vw,15px)}
+  code{background:#20242e;padding:1px 5px;border-radius:4px;font-size:.85em;word-break:break-word}
+
+  @media (max-width:520px){
+    .kpis{grid-template-columns:repeat(2,1fr);gap:10px}
+    .kpi{padding:12px 12px}
+    th,td{padding:8px 10px}
+    .barcell{display:none}          /* hide bar column on phones; % text stays */
+  }
+  @media (max-width:360px){ .kpis{grid-template-columns:1fr} }
+
+  @media print{
+    body{background:#fff;color:#111}
+    .kpi,table,.tbl,.wrap{background:#fff;border-color:#ddd}
+    p.note{background:#f4f6fa;color:#333}
+    .tbl{overflow:visible}
+    h2{break-after:avoid} .tbl,table{break-inside:avoid}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <h1>7-Day Free Trial — Tier-1 Lifecycle Report</h1>
+  <p class="sub">Behavioural cohort · trial-expiry gate · <strong>2026-06-04 → 2026-07-03</strong> (30 days)</p>
+  <div>
+    <span class="tag">Cohort: 1,447 Tier-1 users</span>
+    <span class="tag">ClickHouse + MySQL Stripe</span>
+    <span class="tag">Revenue USD-normalized</span>
+    <span class="tag">✔ Validated 2026-07-03</span>
+  </div>
+
+  <p class="bad note"><strong>Validation corrections applied.</strong> Two headline figures were revised after
+  re-deriving from source: (1) <strong>13 genuine conversions, not 23</strong> — 10 of the original 23 were
+  <em>lapsed Pro subscribers</em> who paid months earlier (back to 2025-03) and cycled through the trial again, not
+  new conversions. (2) The <strong>"79.7% clicked upgrade" figure was paywall <em>dismissals</em></strong>
+  (<code>PricingScreenNew_Close</code>), not clicks; true click-through intent is ~12%.</p>
+
+  <!-- KPIs -->
+  <h2><span class="n">§</span>Executive KPIs</h2>
+  <div class="kpis">
+    <div class="kpi"><div class="v">1,447</div><div class="l">Trial-expiry cohort (T1)</div></div>
+    <div class="kpi"><div class="v bad">0.90%</div><div class="l">Genuine conversion (13 paid)</div></div>
+    <div class="kpi"><div class="v">$2,905</div><div class="l">Revenue (USD)</div></div>
+    <div class="kpi"><div class="v">$180</div><div class="l">Median payment (mean $223)</div></div>
+    <div class="kpi"><div class="v warn">15.6d</div><div class="l">Median activation→upgrade</div></div>
+    <div class="kpi"><div class="v warn">12.4%</div><div class="l">Paywall click-through intent</div></div>
+    <div class="kpi"><div class="v bad">98%</div><div class="l">Checkout→pay abandon</div></div>
+    <div class="kpi"><div class="v">50.9%</div><div class="l">Created ≥1 deck</div></div>
+  </div>
+
+  <!-- Upgrade -->
+  <h2><span class="n">1</span>Upgrade &amp; revenue <span class="muted" style="font-size:13px">(genuine trial conversions)</span></h2>
+  <div class="tbl"><table>
+    <thead><tr><th>Metric</th><th>Value</th></tr></thead>
+    <tbody>
+      <tr><td>Genuine conversions (paid in-window, at expiry)</td><td>13 <span class="muted">(0.90%)</span></td></tr>
+      <tr><td>&nbsp;&nbsp;→ Pro</td><td>10</td></tr>
+      <tr><td>&nbsp;&nbsp;→ Pro Education</td><td>3</td></tr>
+      <tr><td>&nbsp;&nbsp;→ Gold</td><td class="b">0</td></tr>
+      <tr><td>Revenue (USD-normalized)</td><td>$2,905</td></tr>
+      <tr><td>Median payment / mean (ARPU)</td><td>$180 / $223</td></tr>
+      <tr><td>Median activation → upgrade</td><td>15.6 days <span class="muted">(range 9–22)</span></td></tr>
+      <tr><td class="muted">Excluded: lapsed Pro payers cycling trial</td><td class="muted">10 (paid 2025→early-26)</td></tr>
+    </tbody>
+  </table></div>
+  <p class="note">Conversions land ~15 days after activation (range 9–22) — past the trial window, at the expiry
+  moment. The expiry gate IS the conversion trigger. One $909 payment (multi-seat/annual Pro) skews the mean;
+  median payment $180 is the truer per-seat figure.</p>
+
+  <!-- Funnel -->
+  <h2><span class="n">2</span>Conversion funnel</h2>
+  <div class="tbl"><table>
+    <thead><tr><th>Stage</th><th>Users</th><th>% of cohort</th><th class="barcell"></th></tr></thead>
+    <tbody>
+      <tr><td>Hit trial-expiry gate</td><td>1,447</td><td>100.0%</td><td class="barcell"><span class="bar" style="width:100%"></span></td></tr>
+      <tr><td>Interacted w/ paywall <span class="muted">(mostly dismissed)</span></td><td>1,153</td><td>79.7%</td><td class="barcell"><span class="bar" style="width:80%;background:var(--mut)"></span></td></tr>
+      <tr><td>Clicked through with intent <span class="muted">(action=success)</span></td><td>180</td><td>12.4%</td><td class="barcell"><span class="bar" style="width:12%"></span></td></tr>
+      <tr><td>Started checkout (payment_flow_start)</td><td>616</td><td>42.6%</td><td class="barcell"><span class="bar" style="width:43%"></span></td></tr>
+      <tr><td>Payment-success event <span class="muted">(undercounts)</span></td><td>15</td><td>1.0%</td><td class="barcell"><span class="bar" style="width:1%;background:var(--warn)"></span></td></tr>
+      <tr><td><strong>PAID — genuine conversions (Stripe)</strong></td><td><strong>13</strong></td><td><strong>0.90%</strong></td><td class="barcell"><span class="bar" style="width:1%;background:var(--good)"></span></td></tr>
+    </tbody>
+  </table></div>
+  <p class="warn note"><strong>Biggest leak:</strong> checkout-open (616) → paid (13) ≈ <strong>98% abandonment</strong>
+  at the payment step. The paywall is <em>seen</em> by everyone but <em>dismissed</em> by ~74%; only ~12% click
+  through with intent. <br>The <code>payment_flow_end=success</code> event (15) is close to the 13 genuine Stripe
+  subscriptions — checkout-start (616) is far larger because users reach checkout from multiple surfaces
+  (expiry gate, pricing screen), not only the nudge.</p>
+
+  <!-- Engagement -->
+  <h2><span class="n">3</span>Product engagement</h2>
+  <div class="tbl"><table>
+    <thead><tr><th>Stage</th><th>Users</th><th>% of cohort</th></tr></thead>
+    <tbody>
+      <tr><td>Completed onboarding</td><td>653</td><td>45.1%</td></tr>
+      <tr><td>Created ≥1 deck <span class="muted">(gen-init or finished)</span></td><td>737</td><td>50.9%</td></tr>
+      <tr><td>Finished ≥1 deck</td><td>723</td><td>50.0%</td></tr>
+      <tr><td>Attempted PPT export (Pro-gated) — 0 succeeded</td><td>46</td><td>3.2%</td></tr>
+      <tr><td>Avg active days / user</td><td colspan="2" style="text-align:left">4.29</td></tr>
+    </tbody>
+  </table></div>
+  <p class="note">Export is Pro-gated — "export PPT" opens the paywall, and <strong>0 of 46 attempts succeeded</strong>.
+  <strong>49% of the cohort never created a single deck</strong> yet still hit the expiry gate.</p>
+
+  <!-- Paywall -->
+  <h2><span class="n">4</span>Paywall / popup</h2>
+  <div class="tbl"><table>
+    <thead><tr><th>Metric</th><th>Value</th></tr></thead>
+    <tbody>
+      <tr><td>Unique users who saw a paywall/nudge</td><td>1,447 (100%)</td></tr>
+      <tr><td>Total paywall impressions</td><td>17,919</td></tr>
+      <tr><td>Avg impressions per user</td><td>12.4</td></tr>
+      <tr><td>Interacted (incl. dismiss)</td><td>1,153 (79.7%)</td></tr>
+      <tr><td>Clicked through with intent (success)</td><td class="w">180 (12.4%)</td></tr>
+      <tr><td>Dismissed via <code>PricingScreenNew_Close</code></td><td>1,070</td></tr>
+    </tbody>
+  </table></div>
+
+  <!-- Country -->
+  <h2><span class="n">5</span>Country breakdown (Tier-1)</h2>
+  <div class="tbl"><table>
+    <thead><tr><th>Country</th><th>Trial users</th><th>Genuine upgrades</th></tr></thead>
+    <tbody>
+      <tr><td>United States</td><td>209</td><td>4</td></tr>
+      <tr><td>France</td><td>146</td><td>1</td></tr>
+      <tr><td>Germany</td><td>144</td><td>2</td></tr>
+      <tr><td>United Arab Emirates</td><td>138</td><td>0</td></tr>
+      <tr><td>Saudi Arabia</td><td>132</td><td>0</td></tr>
+      <tr><td>Canada</td><td>61</td><td>2</td></tr>
+      <tr><td>Singapore</td><td>56</td><td>1</td></tr>
+      <tr><td>Switzerland / Australia / Thailand</td><td>—</td><td>1 each</td></tr>
+    </tbody>
+  </table></div>
+  <p class="bad note">⚠️ With only <strong>13 genuine upgraders</strong>, per-country conversion is statistically
+  meaningless (0–4 per country). Trial <em>volume</em> by country is reliable; conversion by country is not — do not
+  read into it. GCC markets (UAE 138, Saudi 132) generate high trial volume with zero conversions in-window.</p>
+
+  <!-- Non-converters -->
+  <h2><span class="n">6</span>Non-converters (1,434 = 99.1%)</h2>
+  <div class="tbl"><table>
+    <thead><tr><th>Segment</th><th>Users</th></tr></thead>
+    <tbody>
+      <tr><td>Never created a deck</td><td>709</td></tr>
+      <tr><td>Created decks but never exported</td><td>695</td></tr>
+      <tr><td>Exhausted credits, never upgraded</td><td>1,421</td></tr>
+      <tr><td>Highly active (≥5 days), never upgraded</td><td>341</td></tr>
+    </tbody>
+  </table></div>
+  <p class="note">Two churn populations: <strong>709 never-activated</strong> (onboarding problem) and
+  <strong>341 genuinely engaged</strong> who still didn't pay (value/price problem — the addressable segment).</p>
+
+  <!-- Device -->
+  <h2><span class="n">7</span>Device / OS</h2>
+  <div class="tbl"><table>
+    <thead><tr><th>Split</th><th>Distribution</th></tr></thead>
+    <tbody>
+      <tr><td>Device</td><td style="text-align:left;white-space:normal">Desktop/Laptop 1,393 · mobile 51 · tablet 3</td></tr>
+      <tr><td>OS</td><td style="text-align:left;white-space:normal">Windows 1,054 · macOS 299 · Android 35 · ChromeOS 21 · iOS 19 · Linux 17</td></tr>
+    </tbody>
+  </table></div>
+
+  <!-- Limits -->
+  <h2><span class="n">8</span>Data limits (stated plainly)</h2>
+  <ul>
+    <li><strong>Credits:</strong> <code>is_users.credits</code> = 0 for all 1,421 matched users — the cohort is
+      <em>defined by</em> trial exhaustion, so the 0–100% usage distribution collapses to "~100% consumed." A real
+      allocation-vs-consumption curve needs an <em>activation</em>-based cohort.</li>
+    <li><strong>Retention D1/D3/D7:</strong> the events table has no <code>sessionId</code> column, so true
+      session-return curves aren't available. Proxy: avg <strong>4.29 active days</strong>/user.</li>
+    <li><strong>26 of 1,447</strong> cohort users have no <code>is_users</code> row (deleted/ID mismatch); MySQL-derived
+      cuts use the 1,421 matched.</li>
+    <li><strong>"7-day / 500-credit" naming:</strong> no such package exists (Starter/TRIAL is catalogued 60-day /
+      5,000-credit). Report is against the behavioural trial-expiry cohort. Trial length observed 9–22 days, not a clean 7.</li>
+    <li><strong>n = 13 genuine upgraders</strong> — every segmentation (plan, country, device) is directional only;
+      cohort-level numbers (1,447 base, funnel, engagement) are solid.</li>
+  </ul>
+
+  <!-- Recommendations -->
+  <h2><span class="n">9</span>Recommendations</h2>
+  <ul>
+    <li><strong>Fix checkout, not awareness.</strong> 616 open checkout, 13 pay (98% abandon). A/B the payment step
+      (fewer fields, local payment methods for GCC/EU). This is the single biggest lever.</li>
+    <li><strong>Rescue the 709 who never made a deck.</strong> Front-load a "first deck in 60s" onboarding — the
+      expiry gate is wasted on users who never saw value.</li>
+    <li><strong>Convert at expiry, deliberately.</strong> Genuine upgrades land ~15 days out, at the gate. Target the
+      341 highly-engaged non-converters with an expiry offer (discount / extension).</li>
+    <li><strong>Investigate the lapsed-Pro cyclers.</strong> 10 former Pro subscribers dropped to Starter and hit the
+      trial again — a win-back/reactivation campaign, distinct from new-trial conversion.</li>
+    <li><strong>Zero Gold traction</strong> — confirm Gold is even surfaced in the trial upsell path.</li>
+  </ul>
+
+  <div class="foot">
+    Generated 2026-07-03 · pai-analytics · cohort n=1,447 (T1 trial-expiry, 30d) · revenue USD-normalized (static FX) ·
+    conversions = Stripe subscriptions paid in-window · figures independently re-validated against source; corrections
+    noted inline. Directional cells flagged where n&lt;30.
+  </div>
+
+</div>
+</body>
+</html>
