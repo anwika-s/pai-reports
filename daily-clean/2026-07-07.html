@@ -1,0 +1,41 @@
+<!doctype html><html><head><meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Revenue — 2026-07-07 (IST)  ·  daily clean report (auto)</title><style>:root{--bg:#0f1419;--panel:#1a1f26;--border:#2d343d;--text:#e6e9ef;--muted:#9aa3ad;
+--good:#4ade80;--warn:#fbbf24;--bad:#f87171;--blue:#60a5fa}
+*{box-sizing:border-box}
+body{margin:0;padding:32px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Inter,sans-serif;
+background:var(--bg);color:var(--text);line-height:1.55}
+.wrap{max-width:1000px;margin:0 auto}
+h1{font-size:24px;margin:0 0 6px;font-weight:600}
+h2{font-size:15px;margin:26px 0 4px;color:#bfdbfe}
+.note{color:var(--muted);font-size:12px;margin:6px 0}
+table{width:100%;border-collapse:collapse;font-size:12.5px;background:var(--panel);
+border:1px solid var(--border);border-radius:8px;overflow:hidden;margin:6px 0 4px}
+th,td{padding:7px 12px;border-bottom:1px solid var(--border);text-align:left;white-space:pre}
+th{background:#202733;color:var(--muted);font-weight:600;font-size:10.5px;text-transform:uppercase;letter-spacing:.04em}
+tbody tr:last-child td{border-bottom:none}
+td:not(:first-child),th:not(:first-child){text-align:right}
+tr.total td{font-weight:700;background:rgba(96,165,250,.08)}
+pre{background:#0a0c12;border:1px solid var(--border);border-radius:6px;padding:10px 14px;font-size:11.5px;overflow-x:auto}
+footer{color:var(--muted);font-size:11px;margin-top:28px;padding-top:12px;border-top:1px solid var(--border)}</style></head><body><div class="wrap">
+<h1>Revenue — 2026-07-07 (IST)  ·  daily clean report (auto)</h1>
+<p class='note'>5 buckets are mutually exclusive and reconcile exactly to the day&#x27;s `is_stripepayments` total (FX→USD; Razorpay mirrors into Stripe — no double-count). Renewals via `is_subscription_renewals` (all gateways). Signups via CH userId first-seen.</p>
+<h2>KPIs</h2>
+<table><thead><tr><th>Metric</th><th>Value</th><th>Note</th></tr></thead><tbody><tr><td>Signups</td><td>8,174</td></tr><tr><td>Total revenue</td><td>$5,991.89</td><td>109 payers · 109 payments</td></tr><tr><td>Renewals (all gw)</td><td>27</td></tr><tr><td>Signup → paid conv.</td><td>0.8%</td><td>64 of 8,174 paid same day</td></tr></tbody></table>
+<h2>1 · Revenue by type — mutually exclusive buckets</h2>
+<table><thead><tr><th>Bucket</th><th>Pmts</th><th>Revenue</th><th>% day</th></tr></thead><tbody><tr><td>New subscription</td><td>68</td><td>$2,980.46</td><td>49.7%</td></tr><tr><td>Returning subscription</td><td>2</td><td>$311.62</td><td>5.2%</td></tr><tr><td>Renewal (all gateways)</td><td>27</td><td>$2,201.24</td><td>36.7%</td></tr><tr><td>Export (PPT)</td><td>12</td><td>$498.57</td><td>8.3%</td></tr><tr><td>AI credit top-up</td><td>0</td><td>$0.00</td><td>0.0%</td></tr><tr class='total'><td>TOTAL</td><td>109</td><td>$5,991.89</td><td>100.0%</td></tr></tbody></table>
+<p class='note'>Reconciliation: 68+2+27+12+0 = 109 payments · sums to $5,991.89 ✓</p>
+<h2>2 · Funnel</h2>
+<table><thead><tr><th>Metric</th><th>Value</th></tr></thead><tbody><tr><td>New visitors</td><td>n/a (pai_unq_id not in scope)</td></tr><tr><td>Signups</td><td>8,174</td></tr><tr><td>Converted (paid same day)</td><td>64</td></tr><tr><td>Conversion (signup→paid)</td><td>0.8%</td></tr><tr><td>Total revenue</td><td>$5,991.89</td></tr></tbody></table>
+<h2>2b · Payers by signup timing (today vs earlier)</h2>
+<table><thead><tr><th>Group</th><th>Payers</th><th>Revenue</th></tr></thead><tbody><tr><td>Signed up today + paid</td><td>64</td><td>$2,294.67</td></tr><tr><td>Signed up earlier + paid</td><td>34</td><td>$2,547.52</td></tr><tr><td>No signup record (CH)</td><td>11</td><td>$1,149.70</td></tr><tr class='total'><td>TOTAL payers</td><td>109</td><td>$5,991.89</td></tr></tbody></table>
+<h2>3 · Top countries</h2>
+<table><thead><tr><th>Name</th><th>Signups</th><th>Paid</th><th>Revenue</th></tr></thead><tbody><tr><td>India</td><td>2,660</td><td>27</td><td>$1,232.69</td></tr><tr><td>United States</td><td>134</td><td>12</td><td>$1,040.00</td></tr><tr><td>Germany</td><td>158</td><td>5</td><td>$559.48</td></tr><tr><td>Indonesia</td><td>1,282</td><td>6</td><td>$275.73</td></tr><tr><td>Thailand</td><td>22</td><td>2</td><td>$275.62</td></tr></tbody></table>
+<h2>4 · Top roles</h2>
+<table><thead><tr><th>Name</th><th>Signups</th><th>Paid</th><th>Revenue</th></tr></thead><tbody><tr><td>leadership</td><td>1,052</td><td>34</td><td>$2,149.05</td></tr><tr><td>consulting</td><td>446</td><td>10</td><td>$825.45</td></tr><tr><td>teacher</td><td>1,472</td><td>13</td><td>$603.71</td></tr><tr><td>student</td><td>1,917</td><td>10</td><td>$432.76</td></tr><tr><td>sales</td><td>319</td><td>9</td><td>$256.51</td></tr></tbody></table>
+<h2>5 · Renewal source-of-truth check</h2>
+<table><thead><tr><th>Source</th><th>Count</th><th>Notes</th></tr></thead><tbody><tr><td>is_subscription_renewals (authoritative)</td><td>27</td><td>Stripe+Razorpay+Paddle</td></tr><tr><td>is_stripepayments type=subscription_renewal</td><td>27</td><td>Stripe explicit only</td></tr><tr><td>Razorpay invoices today</td><td>12</td><td>mirror into Stripe (no do…</td></tr><tr><td>Cancellations on the day</td><td>31</td><td>type=&#x27;cancellation&#x27;</td></tr></tbody></table>
+<p class='note'>Buckets mutually exclusive — counts &amp; dollars reconcile to total. Signup→paid is same-day (understated by conversion lag). FX static; revenue-only.</p>
+<footer>Auto-generated from the Slack report (identical data).</footer>
+</div></body></html>
